@@ -11,7 +11,7 @@ import SwiftUI
 struct SpotifyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashView() // Uygulama SplashView ile başlatılır
         }
     }
 }
