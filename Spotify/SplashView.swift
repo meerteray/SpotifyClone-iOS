@@ -7,12 +7,12 @@ struct SplashView: View {
     
     var body: some View {
         if isActive {
-            ContentView()
+            LoginView()
         } else {
             ZStack {
                 Color.black
                     .edgesIgnoringSafeArea(.all)
-            
+                
                 Image("spotifyLogo")
                     .resizable()
                     .frame(width: 200, height: 200)

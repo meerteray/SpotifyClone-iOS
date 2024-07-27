@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack {
@@ -24,8 +24,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .padding(.bottom, 40)
                 
-                Button(action: {
-                }) {
+                NavigationLink(destination: MainView()) {
                     Text("Sign up free")
                         .font(.headline)
                         .foregroundColor(.black)
@@ -37,11 +36,9 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 10)
                 
-                Button(action: {
-                    
-                }) {
+                NavigationLink(destination: MainView()) {
                     HStack {
-                        Image("googleLogo") // Google logosunu assets'e ekleyin ve adını burada belirtin
+                        Image("googleLogo")
                             .resizable()
                             .frame(width: 24, height: 24)
                         Spacer()
@@ -62,10 +59,9 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 10)
                 
-                Button(action: {
-                }) {
+                NavigationLink(destination: MainView()) {
                     HStack {
-                        Image("facebookLogo") // Facebook logosunu assets'e ekleyin ve adını burada belirtin
+                        Image("facebookLogo")
                             .resizable()
                             .frame(width: 24, height: 24)
                         Spacer()
@@ -86,10 +82,9 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 10)
                 
-                Button(action: {
-                }) {
+                NavigationLink(destination: MainView()) {
                     HStack {
-                        Image("appleLogo") // Apple logosunu sistem simgesi olarak kullanıyoruz
+                        Image("appleLogo")
                             .resizable()
                             .frame(width: 24, height: 24)
                         Spacer()
@@ -110,8 +105,7 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 10)
                 
-                Button(action: {
-                }) {
+                NavigationLink(destination: MainView()) {
                     Text("Log in")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -126,5 +120,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    LoginView()
 }
