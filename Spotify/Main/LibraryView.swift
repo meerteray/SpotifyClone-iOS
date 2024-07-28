@@ -2,11 +2,10 @@ import SwiftUI
 
 struct LibraryView: View {
     var body: some View {
-           VStack {
+           ZStack {
+               Color.black.edgesIgnoringSafeArea(.all) 
                Text("Library View")
-                   .font(.largeTitle)
-                   .foregroundColor(.black)
-               Spacer()
+                   .foregroundColor(.white)
            }
        }
    }

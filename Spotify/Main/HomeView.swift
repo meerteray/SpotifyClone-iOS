@@ -2,13 +2,12 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        VStack {
-            Text("Home View")
-                .font(.largeTitle)
-                .foregroundColor(.black)
-            Spacer()
+            ZStack {
+                Color.black.edgesIgnoringSafeArea(.all) 
+                Text("Home View")
+                    .foregroundColor(.white)
+            }
         }
-    }
 }
 
 #Preview {
