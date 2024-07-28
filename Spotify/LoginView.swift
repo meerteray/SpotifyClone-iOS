@@ -108,8 +108,10 @@ struct LoginView: View {
                 NavigationLink(destination: MainView()) {
                     Text("Log in")
                         .font(.headline)
+                        .fontWeight(.bold)
                         .foregroundColor(.white)
                         .padding(.top, 10)
+                    
                 }
                 
                 Spacer()
