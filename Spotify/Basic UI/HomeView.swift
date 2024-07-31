@@ -29,20 +29,20 @@ struct HomeView: View {
                 
                 VStack(spacing: 10) {
                     HStack(spacing: 10) {
-                        createButton(title: "This Is Sezen Aksu", action: { print("Button 1 tapped") })
-                        createButton(title: "Liked Songs", action: { print("Button 2 tapped") })
+                        createButton(title: "This Is", subtitle: "Sezen Aksu", imageName: "sezenAksuImage")
+                        createButton(title: "Liked", subtitle: "Songs", imageName: "likedSongsImage")
                     }
                     HStack(spacing: 10) {
-                        createButton(title: "No.1", action: { print("Button 3 tapped") })
-                        createButton(title: "This Is Eminem", action: { print("Button 4 tapped") })
+                        createButton(title: "No.1", subtitle: "", imageName: "no1Image")
+                        createButton(title: "This Is", subtitle: "Eminem", imageName: "eminemImage")
                     }
                     HStack(spacing: 10) {
-                        createButton(title: "This Is Kanye West", action: { print("Button 5 tapped") })
-                        createButton(title: "Ceza", action: { print("Button 6 tapped") })
+                        createButton(title: "This Is", subtitle: "Kanye West", imageName: "kanyewestImage")
+                        createButton(title: "Ceza", subtitle: "", imageName: "cezaImage")
                     }
                     HStack(spacing: 10) {
-                        createButton(title: "Sagopa Kajmer", action: { print("Button 7 tapped") })
-                        createButton(title: "Sefo", action: { print("Button 8 tapped") })
+                        createButton(title: "Sagopa", subtitle: "Kajmer", imageName: "sagopaImage")
+                        createButton(title: "Sefo", subtitle: "", imageName: "sefoImage")
                     }
                 }
                 
@@ -52,14 +52,32 @@ struct HomeView: View {
         }
     }
     
-    func createButton(title: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Text(title)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.gray.opacity(0.3))
-                .foregroundColor(.white)
-                .cornerRadius(10)
+    func createButton(title: String, subtitle: String, imageName: String) -> some View {
+        Button(action: { print("\(title) \(subtitle) tapped") }) {
+            HStack {
+                Image(imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 40, height: 40)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    if !subtitle.isEmpty {
+                        Text(subtitle)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                }
+                
+                Spacer()
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.gray.opacity(0.3))
+            .cornerRadius(10)
         }
     }
 }
