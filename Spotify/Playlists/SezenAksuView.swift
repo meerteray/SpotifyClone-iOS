@@ -2,49 +2,42 @@ import SwiftUI
 
 struct SezenAksuView: View {
     var body: some View {
-            VStack {
-                LinearGradient(gradient: Gradient(colors: [Color.red.opacity(2), Color.black]),
-                               startPoint: .top,
-                               endPoint: .bottom)
-                
-                .edgesIgnoringSafeArea(.all)
-                .overlay(
-                    VStack {
-                        ZStack {
-                            Image("sezenAksuImage")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 250, height: 250)
-                                .clipped()
-                        }
-                        .padding()
-                        
-                        Text("This is Sezen Aksu, The essential tracks, all in one playlist.")
-                            .font(.system(size: 13))
-                            .foregroundColor(.white)
-                        
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                
-                            }) {
-                                Button(action: {
-                                    print("Button tapped!")
-                                }) {
-                                    Text("Kaybolan Yıllar")
-                                        .padding()
-                                        .background(Color.black)
-                                        .foregroundColor(.white)
-                                }
-                            }
-                            Spacer()
-                        }
-                        .padding()
-                        Spacer()
+        VStack {
+            LinearGradient(gradient: Gradient(colors: [Color.red.opacity(1), Color.black]),
+                           startPoint: .top,
+                           endPoint: .init(x: 0.5, y: 0.5))
+            .edgesIgnoringSafeArea(.all)
+            .overlay(
+                VStack {
+                    ZStack {
+                        Image("sezenAksuImage")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 250, height: 250)
+                            .clipped()
                     }
-                )
-            .navigationBarBackButtonHidden(true)
+                    .padding()
+                    
+                    Text("This is Sezen Aksu, The essential tracks, all in one playlist.")
+                        .font(.system(size: 13))
+                        .foregroundColor(.white)
+                    
+                    Button(action: {
+                        print("Kaybolan Yılları çal")
+                    }) {
+                        Text("Kaybolan Yıllar")
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.green)
+                            .foregroundColor(.white)
+                    }
+                    .padding(.horizontal)
 
+                    Spacer()
+                        .navigationBarBackButtonHidden(true)
+
+                }
+            )
         }
     }
 }
