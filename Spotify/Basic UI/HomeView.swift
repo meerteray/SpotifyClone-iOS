@@ -18,42 +18,75 @@ struct HomeView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.black.edgesIgnoringSafeArea(.all)
-            
-            VStack(alignment: .leading, spacing: 20) {
-                Text(greetingMessage())
-                    .foregroundColor(.white)
-                    .font(.title)
-                    .bold()
+        NavigationView {
+            ZStack {
+                Color.black.edgesIgnoringSafeArea(.all)
                 
-                VStack(spacing: 10) {
-                    HStack(spacing: 10) {
-                        createButton(title: "This Is", subtitle: "Sezen Aksu", imageName: "sezenAksuImage")
-                        createButton(title: "Liked", subtitle: "Songs", imageName: "likedSongsImage")
+                VStack(alignment: .leading, spacing: 20) {
+                    Text(greetingMessage())
+                        .foregroundColor(.white)
+                        .font(.title)
+                        .bold()
+                    
+                    VStack(spacing: 10) {
+                        HStack(spacing: 10) {
+                            createButton(title: "This Is", subtitle: "Sezen Aksu", imageName: "sezenAksuImage", destination: SezenAksuView())
+                            createButton(title: "Liked", subtitle: "Songs", imageName: "likedSongsImage")
+                        }
+                        HStack(spacing: 10) {
+                            createButton(title: "No.1", subtitle: "", imageName: "no1Image")
+                            createButton(title: "This Is", subtitle: "Eminem", imageName: "eminemImage")
+                        }
+                        HStack(spacing: 10) {
+                            createButton(title: "This Is", subtitle: "Kanye West", imageName: "kanyewestImage")
+                            createButton(title: "Ceza", subtitle: "", imageName: "cezaImage")
+                        }
+                        HStack(spacing: 10) {
+                            createButton(title: "Sagopa Kajmer", subtitle: "", imageName: "sagopaImage")
+                            createButton(title: "Sefo", subtitle: "", imageName: "sefoImage")
+                        }
                     }
-                    HStack(spacing: 10) {
-                        createButton(title: "No.1", subtitle: "", imageName: "no1Image")
-                        createButton(title: "This Is", subtitle: "Eminem", imageName: "eminemImage")
-                    }
-                    HStack(spacing: 10) {
-                        createButton(title: "This Is", subtitle: "Kanye West", imageName: "kanyewestImage")
-                        createButton(title: "Ceza", subtitle: "", imageName: "cezaImage")
-                    }
-                    HStack(spacing: 10) {
-                        createButton(title: "Sagopa", subtitle: "Kajmer", imageName: "sagopaImage")
-                        createButton(title: "Sefo", subtitle: "", imageName: "sefoImage")
+                    
+                    Spacer()
+                }
+                .padding()
+            }
+        }
+    }
+    
+    func createButton<Destination: View>(title: String, subtitle: String, imageName: String, destination: Destination) -> some View {
+        NavigationLink(destination: destination) {
+            HStack(spacing: 0) {
+                Image(imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 60, height: 60)
+                    .clipped()
+                
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    if !subtitle.isEmpty {
+                        Text(subtitle)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
                     }
                 }
+                .padding(.leading, 10)
                 
                 Spacer()
             }
-            .padding()
+            .frame(height: 60)
+            .background(Color.gray.opacity(0.3))
+            .cornerRadius(5)
         }
     }
     
     func createButton(title: String, subtitle: String, imageName: String) -> some View {
-        Button(action: { print("\(title) \(subtitle) tapped") }) {
+        Button(action: {
+            print("\(title) \(subtitle) tapped")
+        }) {
             HStack(spacing: 0) {
                 Image(imageName)
                     .resizable()
