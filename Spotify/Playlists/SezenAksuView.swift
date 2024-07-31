@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct SezenAksuView: View {
+    @State private var isButtonPressed = false
+        
     var body: some View {
         VStack {
             LinearGradient(gradient: Gradient(colors: [Color.red.opacity(1), Color.black]),
                            startPoint: .top,
-                           endPoint: .init(x: 0.5, y: 0.5))
+                           endPoint: .init(x: 0.6, y: 0.6))
             .edgesIgnoringSafeArea(.all)
             .overlay(
                 VStack {
@@ -22,20 +24,32 @@ struct SezenAksuView: View {
                         .font(.system(size: 13))
                         .foregroundColor(.white)
                     
-                    Button(action: {
-                        print("Kaybolan Yılları çal")
-                    }) {
-                        Text("Kaybolan Yıllar")
+                    VStack {
+                        
+                        Button(action: {
+                            isButtonPressed.toggle()
+                            print("Kaybolan Yılları çal")
+                        }) {
+                            HStack(alignment: .center) {
+                                Image("kaybolanYıllarImage")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50, height: 50)
+                                
+                                Text("Kaybolan Yıllar")
+                                    .padding(.vertical, 10)
+                                    .foregroundColor(isButtonPressed ? .green : .white)
+                            }
                             .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.green)
-                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.black)
+                        }
+                        
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
-
+                    .padding(.bottom)
+                    
                     Spacer()
-                        .navigationBarBackButtonHidden(true)
-
                 }
             )
         }
