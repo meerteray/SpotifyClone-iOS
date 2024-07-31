@@ -1,7 +1,9 @@
 import SwiftUI
+import AVFoundation
 
 struct SezenAksuView: View {
     @State private var selectedSong: String?
+    @State private var audioPlayer: AVAudioPlayer?
     
     let songs = [
         "Kaybolan Yıllar",
@@ -42,10 +44,10 @@ struct SezenAksuView: View {
                     ForEach(songs, id: \.self) { song in
                         Button(action: {
                             selectedSong = song
-                            print("\(song) çal")
+                            playSong(song: song)
                         }) {
                             HStack(spacing: 10) {
-                                Image("sezenAksuImage") // Örnek görsel, her şarkı için uygun görseli kullanın
+                                Image("kaybolanYıllarImage")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 50, height: 50)
@@ -68,8 +70,24 @@ struct SezenAksuView: View {
             }
         }
     }
+    
+    func playSong(song: String) {
+        guard let url = Bundle.main.url(forResource: song, withExtension: "mp3") else {
+            print("Şarkı dosyası bulunamadı: \(song)")
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print("Şarkı çalınamadı: \(error.localizedDescription)")
+        }
+    }
 }
 
-#Preview {
-    SezenAksuView()
+struct SezenAksuView_Previews: PreviewProvider {
+    static var previews: some View {
+        SezenAksuView()
+    }
 }
