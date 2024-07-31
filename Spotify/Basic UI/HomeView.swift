@@ -2,6 +2,8 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @State var isOpenSezenAksu = false
+    
     func greetingMessage() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
         
@@ -18,7 +20,7 @@ struct HomeView: View {
     }
     
     var body: some View {
-        NavigationView {
+
             ZStack {
                 Color.black.edgesIgnoringSafeArea(.all)
                 
@@ -27,7 +29,7 @@ struct HomeView: View {
                         .foregroundColor(.white)
                         .font(.title)
                         .bold()
-                    
+                                        
                     VStack(spacing: 10) {
                         HStack(spacing: 10) {
                             createButton(title: "This Is", subtitle: "Sezen Aksu", imageName: "sezenAksuImage", destination: SezenAksuView())
@@ -51,7 +53,6 @@ struct HomeView: View {
                 }
                 .padding()
             }
-        }
     }
     
     func createButton<Destination: View>(title: String, subtitle: String, imageName: String, destination: Destination) -> some View {
@@ -76,7 +77,7 @@ struct HomeView: View {
                 .padding(.leading, 10)
                 
                 Spacer()
-            }
+           }
             .frame(height: 60)
             .background(Color.gray.opacity(0.3))
             .cornerRadius(5)
