@@ -1,16 +1,29 @@
 import SwiftUI
 
 struct SezenAksuView: View {
-    @State private var isButtonPressed = false
-        
+    @State private var selectedSong: String?
+    
+    let songs = [
+        "Kaybolan Yıllar",
+        "Firuze",
+        "Gülümse",
+        "Seni Yerler",
+        "Kutlama",
+        "Hadi Bakalım",
+        "İkili Delilik",
+        "Aldatıldık",
+        "Tutsak"
+    ]
+    
     var body: some View {
-        VStack {
+        ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.red.opacity(1), Color.black]),
                            startPoint: .top,
                            endPoint: .init(x: 0.6, y: 0.6))
             .edgesIgnoringSafeArea(.all)
-            .overlay(
-                VStack {
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
                     ZStack {
                         Image("sezenAksuImage")
                             .resizable()
@@ -18,40 +31,41 @@ struct SezenAksuView: View {
                             .frame(width: 250, height: 250)
                             .clipped()
                     }
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
                     
                     Text("This is Sezen Aksu, The essential tracks, all in one playlist.")
                         .font(.system(size: 13))
                         .foregroundColor(.white)
+                        .padding(.horizontal)
                     
-                    VStack {
-                        
+                    ForEach(songs, id: \.self) { song in
                         Button(action: {
-                            isButtonPressed.toggle()
-                            print("Kaybolan Yılları çal")
+                            selectedSong = song
+                            print("\(song) çal")
                         }) {
-                            HStack(alignment: .center) {
-                                Image("kaybolanYıllarImage")
+                            HStack(spacing: 10) {
+                                Image("sezenAksuImage") // Örnek görsel, her şarkı için uygun görseli kullanın
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 50, height: 50)
                                 
-                                Text("Kaybolan Yıllar")
-                                    .padding(.vertical, 10)
-                                    .foregroundColor(isButtonPressed ? .green : .white)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(song)
+                                        .foregroundColor(selectedSong == song ? .green : .white)
+                                        .font(.system(size: 16))
+                                    Text("Sezen Aksu")
+                                        .foregroundColor(.gray)
+                                        .font(.system(size: 14))
+                                }
+                                
+                                Spacer()
                             }
-                            .padding()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color.black)
                         }
-                        
-                        .padding(.horizontal)
                     }
-                    .padding(.bottom)
-                    
-                    Spacer()
                 }
-            )
+                .padding(.horizontal)
+            }
         }
     }
 }
