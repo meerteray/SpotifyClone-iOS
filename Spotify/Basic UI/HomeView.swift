@@ -54,12 +54,12 @@ struct HomeView: View {
     
     func createButton(title: String, subtitle: String, imageName: String) -> some View {
         Button(action: { print("\(title) \(subtitle) tapped") }) {
-            HStack {
+            HStack(spacing: 0) {
                 Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 40, height: 40)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .frame(width: 60, height: 60)
+                    .clipped()
                 
                 VStack(alignment: .leading) {
                     Text(title)
@@ -71,13 +71,13 @@ struct HomeView: View {
                             .foregroundColor(.gray)
                     }
                 }
+                .padding(.leading, 10)
                 
                 Spacer()
             }
-            .padding()
-            .frame(maxWidth: .infinity)
+            .frame(height: 60)
             .background(Color.gray.opacity(0.3))
-            .cornerRadius(10)
+            .cornerRadius(5)
         }
     }
 }
