@@ -3,6 +3,8 @@ import SwiftUI
 struct HomeView: View {
     
     @State var isOpenSezenAksu = false
+    @State var openDetail = false
+    @State var image = ""
     
     func greetingMessage() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
@@ -30,6 +32,9 @@ struct HomeView: View {
                         .font(.title)
                         .bold()
                                         
+                    NavigationLink(destination: PlaylistView(image: $image), isActive: $openDetail) {
+                      
+                    }
                     VStack(spacing: 10) {
                         HStack(spacing: 10) {
                             createButton(title: "This Is", subtitle: "Sezen Aksu", imageName: "sezenAksuImage", destination: SezenAksuView())
@@ -38,10 +43,22 @@ struct HomeView: View {
                         HStack(spacing: 10) {
                             createButton(title: "No.1", subtitle: "", imageName: "no1Image", destination: no1View())
                             createButton(title: "This Is", subtitle: "Eminem", imageName: "eminemImage")
+                                .onTapGesture {
+                                    image = "eminemImage"
+                                    openDetail.toggle()
+                                }
                         }
                         HStack(spacing: 10) {
                             createButton(title: "This Is", subtitle: "Kanye West", imageName: "kanyewestImage")
+                                .onTapGesture {
+                                    image = "kanyewestImage"
+                                    openDetail.toggle()
+                                }
                             createButton(title: "Ceza", subtitle: "", imageName: "cezaImage")
+                                .onTapGesture {
+                                    image = "cezaImage"
+                                    openDetail.toggle()
+                                }
                         }
                         HStack(spacing: 10) {
                             createButton(title: "Sagopa Kajmer", subtitle: "", imageName: "sagopaImage")
@@ -87,6 +104,8 @@ struct HomeView: View {
     func createButton(title: String, subtitle: String, imageName: String) -> some View {
         Button(action: {
             print("\(title) \(subtitle) tapped")
+            image = imageName
+            openDetail.toggle()
         }) {
             HStack(spacing: 0) {
                 Image(imageName)

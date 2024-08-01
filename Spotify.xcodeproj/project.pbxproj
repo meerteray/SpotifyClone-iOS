@@ -21,6 +21,7 @@
 		E3A1ACCF2C5C059E00FC4BD2 /* İkili Delilik.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A1ACCE2C5C059E00FC4BD2 /* İkili Delilik.mp3 */; };
 		E3A1ACD62C5C08D400FC4BD2 /* Tutsak.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A1ACD52C5C08D400FC4BD2 /* Tutsak.mp3 */; };
 		E3A1ACD82C5C09B900FC4BD2 /* no1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1ACD72C5C09B900FC4BD2 /* no1View.swift */; };
+		E3A1ACDA2C5C0DEF00FC4BD2 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */; };
 		E3A9396F2C5A532300B0275B /* SezenAksuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A9396E2C5A532300B0275B /* SezenAksuView.swift */; };
 		E3A939762C5AA86C00B0275B /* Kaybolan Yıllar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A939752C5AA86C00B0275B /* Kaybolan Yıllar.mp3 */; };
 		E3C352C42C5565C300DF2A37 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C352C32C5565C300DF2A37 /* MainView.swift */; };
@@ -45,6 +46,7 @@
 		E3A1ACCE2C5C059E00FC4BD2 /* İkili Delilik.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "İkili Delilik.mp3"; sourceTree = "<group>"; };
 		E3A1ACD52C5C08D400FC4BD2 /* Tutsak.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tutsak.mp3; sourceTree = "<group>"; };
 		E3A1ACD72C5C09B900FC4BD2 /* no1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = no1View.swift; sourceTree = "<group>"; };
+		E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 		E3A9396E2C5A532300B0275B /* SezenAksuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SezenAksuView.swift; sourceTree = "<group>"; };
 		E3A939752C5AA86C00B0275B /* Kaybolan Yıllar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kaybolan Yıllar.mp3"; sourceTree = "<group>"; };
 		E3C352C32C5565C300DF2A37 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				E3A9396E2C5A532300B0275B /* SezenAksuView.swift */,
 				E3A1ACD72C5C09B900FC4BD2 /* no1View.swift */,
+				E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				E319F0EC2C53E297002BD4A9 /* LoginView.swift in Sources */,
 				E3A9396F2C5A532300B0275B /* SezenAksuView.swift in Sources */,
 				E319F0EA2C53E297002BD4A9 /* SpotifyApp.swift in Sources */,
+				E3A1ACDA2C5C0DEF00FC4BD2 /* PlaylistView.swift in Sources */,
 				E3C352C42C5565C300DF2A37 /* MainView.swift in Sources */,
 				E3C352C62C5648E000DF2A37 /* HomeView.swift in Sources */,
 				E3A1ACD82C5C09B900FC4BD2 /* no1View.swift in Sources */,
