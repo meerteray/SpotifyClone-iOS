@@ -36,7 +36,7 @@ struct HomeView: View {
                             createButton(title: "Liked", subtitle: "Songs", imageName: "likedSongsImage")
                         }
                         HStack(spacing: 10) {
-                            createButton(title: "No.1", subtitle: "", imageName: "no1Image")
+                            createButton(title: "No.1", subtitle: "", imageName: "no1Image", destination: no1View())
                             createButton(title: "This Is", subtitle: "Eminem", imageName: "eminemImage")
                         }
                         HStack(spacing: 10) {
