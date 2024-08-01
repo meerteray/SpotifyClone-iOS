@@ -10,10 +10,11 @@ import SwiftUI
 struct PlaylistView: View {
     
     @Binding var image: String
+    @Binding var colors: [Color]
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.gray.opacity(1), Color.black]),
+            LinearGradient(gradient: Gradient(colors: colors),
                            startPoint: .top,
                            endPoint: .init(x: 0.6, y: 0.6))
             .edgesIgnoringSafeArea(.all)
@@ -39,5 +40,5 @@ struct PlaylistView: View {
 }
 
 #Preview {
-    PlaylistView(image: .constant("sagopaImage"))
+    PlaylistView(image: .constant("sagopaImage"), colors: .constant([Color.gray.opacity(1), Color.black]))
 }

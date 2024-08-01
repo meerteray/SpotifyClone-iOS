@@ -2,9 +2,10 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State var isOpenSezenAksu = false
     @State var openDetail = false
+    
     @State var image = ""
+    @State var colors = [Color]()
     
     func greetingMessage() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
@@ -31,38 +32,27 @@ struct HomeView: View {
                         .foregroundColor(.white)
                         .font(.title)
                         .bold()
-                                        
-                    NavigationLink(destination: PlaylistView(image: $image), isActive: $openDetail) {
-                      
-                    }
+                                                            
+                    NavigationLink(destination: PlaylistView(image: $image, colors: $colors), isActive: $openDetail) { }
+                    
                     VStack(spacing: 10) {
                         HStack(spacing: 10) {
                             createButton(title: "This Is", subtitle: "Sezen Aksu", imageName: "sezenAksuImage", destination: SezenAksuView())
-                            createButton(title: "Liked", subtitle: "Songs", imageName: "likedSongsImage")
+                            createButton(title: "Liked", subtitle: "Songs", imageName: "likedSongsImage", colors: [Color.yellow.opacity(1), Color.black])
                         }
                         HStack(spacing: 10) {
                             createButton(title: "No.1", subtitle: "", imageName: "no1Image", destination: no1View())
-                            createButton(title: "This Is", subtitle: "Eminem", imageName: "eminemImage")
-                                .onTapGesture {
-                                    image = "eminemImage"
-                                    openDetail.toggle()
-                                }
+                            createButton(title: "This Is", subtitle: "Eminem", imageName: "eminemImage", colors: [Color.red.opacity(1), Color.black])
                         }
                         HStack(spacing: 10) {
-                            createButton(title: "This Is", subtitle: "Kanye West", imageName: "kanyewestImage")
-                                .onTapGesture {
-                                    image = "kanyewestImage"
-                                    openDetail.toggle()
-                                }
-                            createButton(title: "Ceza", subtitle: "", imageName: "cezaImage")
-                                .onTapGesture {
-                                    image = "cezaImage"
-                                    openDetail.toggle()
-                                }
+                            createButton(title: "This Is", subtitle: "Kanye West", imageName: "kanyewestImage",colors: [Color.red.opacity(1), Color.black])
+                               
+                            createButton(title: "Ceza", subtitle: "", imageName: "cezaImage",colors: [Color.gray.opacity(1), Color.black])
+                               
                         }
                         HStack(spacing: 10) {
-                            createButton(title: "Sagopa Kajmer", subtitle: "", imageName: "sagopaImage")
-                            createButton(title: "Sefo", subtitle: "", imageName: "sefoImage")
+                            createButton(title: "Sagopa Kajmer", subtitle: "", imageName: "sagopaImage",colors: [Color.green.opacity(1), Color.black])
+                            createButton(title: "Sefo", subtitle: "", imageName: "sefoImage",colors: [Color.pink.opacity(1), Color.black])
                         }
                     }
                     
@@ -101,10 +91,11 @@ struct HomeView: View {
         }
     }
     
-    func createButton(title: String, subtitle: String, imageName: String) -> some View {
+    func createButton(title: String, subtitle: String, imageName: String, colors: [Color]) -> some View {
         Button(action: {
             print("\(title) \(subtitle) tapped")
-            image = imageName
+            self.image = imageName
+            self.colors = colors
             openDetail.toggle()
         }) {
             HStack(spacing: 0) {
