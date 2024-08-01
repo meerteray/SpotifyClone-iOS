@@ -79,6 +79,8 @@ struct SezenAksuView: View {
     }
     
     func playSong(song: String) {
+        audioPlayer?.stop()
+        
         guard let url = Bundle.main.url(forResource: song, withExtension: "mp3") else {
             print("Şarkı dosyası bulunamadı: \(song)")
             return
@@ -87,6 +89,7 @@ struct SezenAksuView: View {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.play()
+            selectedSong = song
             isPlaying = true
         } catch {
             print("Şarkı çalınamadı: \(error.localizedDescription)")
