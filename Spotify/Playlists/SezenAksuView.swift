@@ -6,17 +6,7 @@ struct SezenAksuView: View {
     @State private var audioPlayer: AVAudioPlayer?
     @State private var isPlaying = false
     
-    let songs = [
-        "Kaybolan Yıllar",
-        "Firuze",
-        "Gülümse",
-        "Seni Yerler",
-        "Kutlama",
-        "Hadi Bakalım",
-        "İkili Delilik",
-        "Aldatıldık",
-        "Tutsak"
-    ]
+   
     
     var body: some View {
         ZStack {
@@ -43,7 +33,7 @@ struct SezenAksuView: View {
                             .foregroundColor(.white)
                             .padding(.horizontal)
                         
-                        ForEach(songs, id: \.self) { song in
+                        ForEach(Constants().sezenAksuSongs, id: \.self) { song in
                             Button(action: {
                                 selectedSong = song
                                 playSong(song: song)
