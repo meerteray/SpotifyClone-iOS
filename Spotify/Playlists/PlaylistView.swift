@@ -5,6 +5,7 @@ struct PlaylistView: View {
     
     @Binding var image: String
     @Binding var colors: [Color]
+    @Binding var songs: [String]
     
     @State private var selectedSong: String?
     @State private var audioPlayer: AVAudioPlayer?
@@ -33,7 +34,7 @@ struct PlaylistView: View {
                         .padding()
                     }
                     
-                    ForEach(Constants().sezenAksuSongs, id: \.self) { song in
+                    ForEach(songs, id: \.self) { song in
                         Button(action: {
                             selectedSong = song
                             playSong(song: song)
@@ -83,5 +84,5 @@ struct PlaylistView: View {
 }
 
 #Preview {
-    PlaylistView(image: .constant("sagopaImage"), colors: .constant([Color.gray.opacity(1), Color.black]))
+    PlaylistView(image: .constant("sagopaImage"), colors: .constant([Color.gray.opacity(1), Color.black]), songs: .constant(Constants().sezenAksuSongs))
 }

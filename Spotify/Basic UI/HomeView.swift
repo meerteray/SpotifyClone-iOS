@@ -6,6 +6,7 @@ struct HomeView: View {
     
     @State var image = ""
     @State var colors = [Color]()
+    @State var songs = [String]()
     
     func greetingMessage() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
@@ -33,7 +34,7 @@ struct HomeView: View {
                         .font(.title)
                         .bold()
                                                             
-                    NavigationLink(destination: PlaylistView(image: $image, colors: $colors), isActive: $openDetail) { }
+                    NavigationLink(destination: PlaylistView(image: $image, colors: $colors, songs: $songs), isActive: $openDetail) { }
                     
                     VStack(spacing: 10) {
                         HStack(spacing: 10) {
@@ -97,6 +98,7 @@ struct HomeView: View {
             self.image = imageName
             self.colors = colors
             openDetail.toggle()
+            self.songs = Constants().no1Songs
         }) {
             HStack(spacing: 0) {
                 Image(imageName)
