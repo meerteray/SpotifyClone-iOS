@@ -12,7 +12,7 @@ struct MainView: View {
             Color.black.edgesIgnoringSafeArea(.all)
             
             TabView {
-                HomeView()
+                HomeView2()
                     .tabItem {
                         Image("homeLogo")
                         Text("Home")
