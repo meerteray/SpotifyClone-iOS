@@ -6,7 +6,7 @@ struct PlaylistView: View {
     @Binding var colors: [Color]
     @Binding var songs: [String]
     @Binding var artist: String
-
+    
     @State private var selectedSong: String?
     @State private var audioPlayer: AVAudioPlayer?
     @State private var isPlaying = false
@@ -65,7 +65,7 @@ struct PlaylistView: View {
                 }
                 
                 if let selectedSong = selectedSong {
-                    PlayerControlView(song: selectedSong, isPlaying: $isPlaying, togglePlayPause: togglePlayPause)
+                    PlayerControlView(song: selectedSong, artist: artist, isPlaying: $isPlaying, togglePlayPause: togglePlayPause)
                 }
             }
         }
@@ -101,6 +101,7 @@ struct PlaylistView: View {
 
 struct PlayerControlView: View {
     let song: String
+    let artist: String
     @Binding var isPlaying: Bool
     let togglePlayPause: () -> Void
     
@@ -115,7 +116,7 @@ struct PlayerControlView: View {
                 Text(song)
                     .font(.caption)
                     .foregroundColor(.white)
-                Text("Artist Name")
+                Text(artist)
                     .font(.caption2)
                     .foregroundColor(.gray)
             }
@@ -132,4 +133,12 @@ struct PlayerControlView: View {
         .padding()
         .background(Color.black.opacity(0.8))
     }
+}
+#Preview {
+    PlaylistView(
+        image: .constant("sezenAksuImage"),
+        colors: .constant([Color.red.opacity(0.8), Color.black]),
+        songs: .constant(Constants().artistSongs["Sezen Aksu"] ?? []),
+        artist: .constant("Sezen Aksu")
+    )
 }
