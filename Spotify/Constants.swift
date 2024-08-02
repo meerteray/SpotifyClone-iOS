@@ -20,4 +20,11 @@ struct Constants {
         "Aldatıldık",
         "Tutsak"
     ]
+    
+    let no1Songs = [
+        "a",
+        "b",
+        "c"
+    ]
+    
 }
