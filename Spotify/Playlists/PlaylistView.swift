@@ -1,10 +1,3 @@
-//
-//  PlaylistView.swift
-//  Spotify Clone
-//
-//  Created by Mert Eray on 1.08.2024.
-//
-
 import SwiftUI
 
 struct PlaylistView: View {

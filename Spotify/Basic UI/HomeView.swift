@@ -41,7 +41,7 @@ struct HomeView: View {
                             createButton(title: "Liked", subtitle: "Songs", imageName: "likedSongsImage", colors: [Color.yellow.opacity(1), Color.black])
                         }
                         HStack(spacing: 10) {
-                            createButton(title: "No.1", subtitle: "", imageName: "no1Image", destination: no1View())
+                            createButton(title: "No.1", subtitle: "", imageName: "no1Image",colors: [Color.gray.opacity(1), Color.black])
                             createButton(title: "This Is", subtitle: "Eminem", imageName: "eminemImage", colors: [Color.red.opacity(1), Color.black])
                         }
                         HStack(spacing: 10) {
