@@ -1,10 +1,3 @@
-//
-//  Constants.swift
-//  Spotify Clone
-//
-//  Created by Mert Eray on 2.08.2024.
-//
-
 import Foundation
 
 struct Constants {
@@ -22,9 +15,44 @@ struct Constants {
     ]
     
     let no1Songs = [
-        "a",
-        "b",
-        "c"
+        "Yarım Kalan Sigara",
+        "Bu Benim Hayatım",
+        "Hiç Işık Yok",
+        "Böyle İyi"
     ]
     
+    let eminemSongs = [
+        "Mockingbird",
+        "Superman",
+        "Without me",
+        "Houdini"
+    ]
+    
+    let kanyewestSongs = [
+        "Heartless",
+        "Flashing Lights",
+        "All Falls Down",
+        "Homecoming"
+    ]
+    
+    let cezaSongs = [
+        "Med Cezir",
+        "Gelsin Hayat Bildiği Gibi",
+        "Suspus",
+        "Kim Bilir"
+    ]
+    
+    let sagopaSongs = [
+        "24",
+        "Onlarla Konuşuyorum",
+        "Bir Pesimistin Gözyaşları",
+        "Karikatür Komedya"
+    ]
+    
+    let sefoSongs = [
+        "KAPALI KAPILAR",
+        "ARABA",
+        "kördüğüm",
+        "Bilmem mi?"
+    ]
 }
