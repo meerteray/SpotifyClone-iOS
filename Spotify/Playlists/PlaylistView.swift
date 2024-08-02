@@ -71,8 +71,7 @@ struct PlaylistView: View {
                             let offset = geometry.frame(in: .global).minY
                             scrollOffset = offset
                             
-                            if offset < -50 {
-                                print("ScrollView bu pozisyonu geçti: \(offset)")
+                            if offset < -40 {
                                 showTitle = true
                             } else {
                                 showTitle = false
@@ -87,7 +86,7 @@ struct PlaylistView: View {
             }
         }
         
-        .navigationTitle(showTitle ? "Başlık" : "")
+        .navigationTitle(showTitle ? artist : "")
     }
     
     func playSong(song: String) {
