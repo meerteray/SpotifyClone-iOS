@@ -11,6 +11,10 @@ struct PlaylistView: View {
     @State private var audioPlayer: AVAudioPlayer?
     @State private var isPlaying = false
     
+    @State private var showTitle = false
+    @State private var scrollOffset: CGFloat = 0
+    
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: colors),
@@ -62,13 +66,28 @@ struct PlaylistView: View {
                         }
                     }
                     .padding(.horizontal)
+                    .background(GeometryReader { geometry -> Color in
+                        DispatchQueue.main.async {
+                            let offset = geometry.frame(in: .global).minY
+                            scrollOffset = offset
+                            
+                            if offset < -50 {
+                                print("ScrollView bu pozisyonu geçti: \(offset)")
+                                showTitle = true
+                            } else {
+                                showTitle = false
+                            }
+                        }
+                        return Color.clear
+                    })
                 }
-                
                 if let selectedSong = selectedSong {
                     PlayerControlView(song: selectedSong, artist: artist, isPlaying: $isPlaying, togglePlayPause: togglePlayPause)
                 }
             }
         }
+        
+        .navigationTitle(showTitle ? "Başlık" : "")
     }
     
     func playSong(song: String) {
@@ -141,4 +160,11 @@ struct PlayerControlView: View {
         songs: .constant(Constants().artistSongs["Sezen Aksu"] ?? []),
         artist: .constant("Sezen Aksu")
     )
+}
+
+struct ViewOffsetKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
 }
