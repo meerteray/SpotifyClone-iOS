@@ -4,18 +4,38 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
 
     var body: some View {
-        VStack {
-            Text("Kullanıcı Adı: \(viewModel.userName)")
-                .padding()
-            Button(action: {
-                viewModel.fetchUserName()
-            }) {
-                Text("Kullanıcı Adını Çek")
+        NavigationView {
+            List(viewModel.users) { user in
+                Button(action: {
+                    viewModel.selectUser(user)
+                }) {
+                    Text(user.name)
+                }
             }
+            .navigationTitle("Artist")
+            .onAppear {
+                viewModel.fetchUsers()
+            }
+        }
+        .sheet(item: $viewModel.selectedUser) { user in
+            UserDetailView(user: user)
         }
     }
 }
 
-#Preview {
-    HomeView()
-}
+struct UserDetailView: View {
+    let user: User
+    var body: some View {
+            VStack {
+                Text("Kullanıcı Detayları")
+                    .font(.title)
+                    .padding()
+                Text("ID: \(user.id)")
+                Text("İsim: \(user.name)")
+            }
+        }
+    }
+
+    #Preview {
+        HomeView()
+    }
