@@ -20,6 +20,8 @@
 		E33B19E32C5D4B3900F98A3D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E33B19E22C5D4B3900F98A3D /* FirebaseFirestore */; };
 		E33B19E52C5D4B3900F98A3D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E33B19E42C5D4B3900F98A3D /* FirebaseStorage */; };
 		E33B19E72C5D4B6F00F98A3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E33B19E62C5D4B6F00F98A3D /* GoogleService-Info.plist */; };
+		E39868EF2C5E5BE50081ADBB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39868EE2C5E5BE50081ADBB /* HomeViewModel.swift */; };
+		E39868F12C5E5CA30081ADBB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39868F02C5E5CA30081ADBB /* Model.swift */; };
 		E3A1ACC12C5C029200FC4BD2 /* Firuze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A1ACC02C5C029200FC4BD2 /* Firuze.mp3 */; };
 		E3A1ACC32C5C040400FC4BD2 /* Gülümse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A1ACC22C5C040400FC4BD2 /* Gülümse.mp3 */; };
 		E3A1ACC52C5C042C00FC4BD2 /* Seni Yerler.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A1ACC42C5C042C00FC4BD2 /* Seni Yerler.mp3 */; };
@@ -46,6 +48,8 @@
 		E33B19D52C5D1B5200F98A3D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E33B19D92C5D4A0700F98A3D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E33B19E62C5D4B6F00F98A3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E39868EE2C5E5BE50081ADBB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E39868F02C5E5CA30081ADBB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E3A1ACC02C5C029200FC4BD2 /* Firuze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Firuze.mp3; sourceTree = "<group>"; };
 		E3A1ACC22C5C040400FC4BD2 /* Gülümse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gülümse.mp3"; sourceTree = "<group>"; };
 		E3A1ACC42C5C042C00FC4BD2 /* Seni Yerler.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Seni Yerler.mp3"; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 				E3C352C52C5648E000DF2A37 /* HomeView2.swift */,
 				E3C352C72C5648EE00DF2A37 /* SearchView.swift */,
 				E3C352C92C5648FD00DF2A37 /* LibraryView.swift */,
+				E39868F02C5E5CA30081ADBB /* Model.swift */,
+				E39868EE2C5E5BE50081ADBB /* HomeViewModel.swift */,
 				E33B19D92C5D4A0700F98A3D /* HomeView.swift */,
 			);
 			path = "Basic UI";
@@ -248,12 +254,14 @@
 				E3C352CA2C5648FD00DF2A37 /* LibraryView.swift in Sources */,
 				E319F0EC2C53E297002BD4A9 /* LoginView.swift in Sources */,
 				E319F0EA2C53E297002BD4A9 /* SpotifyApp.swift in Sources */,
+				E39868F12C5E5CA30081ADBB /* Model.swift in Sources */,
 				E33B19DA2C5D4A0700F98A3D /* HomeView.swift in Sources */,
 				E3A1ACDA2C5C0DEF00FC4BD2 /* PlaylistView.swift in Sources */,
 				E33B19D62C5D1B5200F98A3D /* Constants.swift in Sources */,
 				E3C352C42C5565C300DF2A37 /* MainView.swift in Sources */,
 				E3C352C62C5648E000DF2A37 /* HomeView2.swift in Sources */,
 				E3C352C82C5648EE00DF2A37 /* SearchView.swift in Sources */,
+				E39868EF2C5E5BE50081ADBB /* HomeViewModel.swift in Sources */,
 				E319F1002C54C351002BD4A9 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
