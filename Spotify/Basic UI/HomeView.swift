@@ -2,7 +2,22 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
-
+    
+    func greetingMessage() -> String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        switch hour {
+        case 6..<12:
+            return "Good Morning"
+        case 12..<17:
+            return "Good Afternoon"
+        case 17..<22:
+            return "Good Evening"
+        default:
+            return "Good Night"
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List(viewModel.users) { user in
@@ -12,30 +27,14 @@ struct HomeView: View {
                     Text(user.name)
                 }
             }
-            .navigationTitle("Artist")
+            .navigationTitle(greetingMessage())
             .onAppear {
                 viewModel.fetchUsers()
             }
         }
-        .sheet(item: $viewModel.selectedUser) { user in
-            UserDetailView(user: user)
-        }
     }
 }
 
-struct UserDetailView: View {
-    let user: User
-    var body: some View {
-            VStack {
-                Text("Kullanıcı Detayları")
-                    .font(.title)
-                    .padding()
-                Text("ID: \(user.id)")
-                Text("İsim: \(user.name)")
-            }
-        }
-    }
-
-    #Preview {
-        HomeView()
-    }
+#Preview {
+    HomeView()
+}
