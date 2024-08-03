@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
-    
+
     func greetingMessage() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
         
@@ -18,14 +18,28 @@ struct HomeView: View {
         }
     }
     
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
         NavigationView {
-            List(viewModel.users) { user in
-                Button(action: {
-                    viewModel.selectUser(user)
-                }) {
-                    Text(user.name)
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(viewModel.users) { user in
+                        Button(action: {
+                            viewModel.selectUser(user)
+                        }) {
+                            Text(user.name)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue.opacity(0.1))
+                                .cornerRadius(10)
+                        }
+                    }
                 }
+                .padding()
             }
             .navigationTitle(greetingMessage())
             .onAppear {
@@ -34,6 +48,7 @@ struct HomeView: View {
         }
     }
 }
+
 
 #Preview {
     HomeView()
