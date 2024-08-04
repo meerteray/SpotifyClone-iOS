@@ -39,28 +39,57 @@ struct HomeView: View {
                                 Button(action: {
                                     viewModel.selectUser(user)
                                 }) {
-                                    Text(user.name)
-                                        .frame(maxWidth: .infinity)
-                                        .padding()
-                                        .background(Color.white.opacity(0.1))
-                                        .cornerRadius(10)
-                                        .tint(.white)
+                                    HStack(spacing: 0) {
+                                        /*   Image("")
+                                         .resizable()
+                                         */
+                                        
+                                        AsyncImage(url: URL(string: user.imageURL)) { phase in
+                                            if let image = phase.image {
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 60, height: 60)
+                                                    .clipped() 
+                                            } else if phase.error != nil {
+                                                Text("Görsel Yüklenemedi")
+                                            } else {
+                                                ProgressView()
+                                            }
+                                        }
+                                            
+                                            VStack(alignment: .leading) {
+                                                Text(user.name)
+                                                    .font(.headline)
+                                                    .foregroundColor(.white)
+                                                if !user.name.isEmpty {
+                                                    Text(user.name)
+                                                        .font(.subheadline)
+                                                        .foregroundColor(.gray)
+                                                }
+                                            }
+                                            .padding(.leading, 10)
+                                            Spacer()
+                                        }
+                                        .frame(height: 60)
+                                        .background(Color.gray.opacity(0.3))
+                                        .cornerRadius(5)
+                                    }
                                 }
                             }
+                            .padding()
                         }
-                        .padding()
+                        
                     }
-                    
-                }
-                .onAppear {
-                    viewModel.fetchUsers()
+                    .onAppear {
+                        viewModel.fetchUsers()
+                    }
                 }
             }
         }
     }
-}
-
-
-#Preview {
-    HomeView()
-}
+    
+    
+    #Preview {
+        HomeView()
+    }

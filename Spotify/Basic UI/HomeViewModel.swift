@@ -6,6 +6,7 @@ class HomeViewModel: ObservableObject {
     @Published var users: [User] = []
     @Published var selectedUser: User?
 
+
     func fetchUsers() {
         let db = Firestore.firestore()
         
@@ -18,10 +19,12 @@ class HomeViewModel: ObservableObject {
             self.users = querySnapshot?.documents.compactMap { document -> User? in
                 let data = document.data()
                 let id = document.documentID
-                if let name = data["name"] as? String {
-                    return User(id: id, name: name)
-                }
-                return nil
+                let  name = data["name"] as! String
+                let  imageURL = data["imageURL"] as? String ?? ""
+
+                    return User(id: id, name: name, imageURL: imageURL)
+
+              
             } ?? []
         }
     }
