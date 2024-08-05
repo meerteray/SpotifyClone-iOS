@@ -40,9 +40,7 @@ struct HomeView: View {
                                     viewModel.selectUser(user)
                                 }) {
                                     HStack(spacing: 0) {
-                                        /*   Image("")
-                                         .resizable()
-                                         */
+                                       
                                         
                                         AsyncImage(url: URL(string: user.imageURL)) { phase in
                                             if let image = phase.image {
