@@ -13,7 +13,7 @@ struct HomeView2: View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
             /*
-             dn
+             
              */
             VStack(alignment: .leading, spacing: 20) {
                 
