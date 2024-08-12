@@ -13,8 +13,7 @@ struct HomeView2: View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
             /*
-             ggff
-             */
+                          */
             VStack(alignment: .leading, spacing: 20) {
                 
                 NavigationLink(destination: PlaylistView(
