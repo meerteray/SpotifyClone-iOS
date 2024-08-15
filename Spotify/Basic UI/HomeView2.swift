@@ -12,7 +12,7 @@ struct HomeView2: View {
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
-            /*
+            /*vf
             */
             VStack(alignment: .leading, spacing: 20) {
                 
