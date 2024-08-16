@@ -38,8 +38,8 @@ struct HomeView: View {
                             ForEach(viewModel.users) { user in
                                 
                                 
-                            NavigationLink(destination: PlaylistView()) {
-                                    
+                                NavigationLink(destination: PlaylistView(userName: user.name, imageURL: user.imageURL)) {
+
                                 
                                     HStack(spacing: 0) {
                                         AsyncImage(url: URL(string: user.imageURL)) { phase in
