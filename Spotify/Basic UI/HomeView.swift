@@ -38,7 +38,7 @@ struct HomeView: View {
                             ForEach(viewModel.users) { user in
                                 
                                 
-                                NavigationLink(destination: PlaylistView(userName: user.name, imageURL: user.imageURL)) {
+                                NavigationLink(destination: PlaylistView(selectedUser: user)) {
 
                                 
                                     HStack(spacing: 0) {

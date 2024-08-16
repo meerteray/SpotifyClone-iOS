@@ -2,8 +2,7 @@ import SwiftUI
 import FirebaseStorage
 
 struct PlaylistView: View {
-    let userName: String
-    let imageURL: String
+    let selectedUser: User
     @State private var image: UIImage?
     
     var body: some View {
@@ -16,7 +15,7 @@ struct PlaylistView: View {
             } else {
                 ProgressView()
             }
-            Text(userName)
+            Text(selectedUser.name)
                 .font(.title)
         }
         .onAppear {
@@ -26,7 +25,7 @@ struct PlaylistView: View {
     
     private func fetchImageFromFirebase() {
         let storage = Storage.storage()
-        let reference = storage.reference(forURL: imageURL)
+        let reference = storage.reference(forURL: selectedUser.imageURL)
         
         reference.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if let error = error {
@@ -41,5 +40,7 @@ struct PlaylistView: View {
 }
 
 #Preview {
-    PlaylistView(userName: "Sezen Aksu", imageURL: "gs://your-firebase-storage-url/sezen_aksu.jpg")
+    PlaylistView(
+        selectedUser:
+            User(id: "1", name: "Sezen Aksu", imageURL:"https://firebasestorage.googleapis.com/v0/b/spotifyclone-80fcd.appspot.com/o/sezenAksuImage.jpg?alt=media&token=4051d5d1-1c0c-4412-9e7d-c142f29f5cef"))
 }
