@@ -54,7 +54,7 @@ struct Constants {
 
 struct PlaylistView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaylistView(
+        PlaylistView2(
             image: .constant("sagopaImage"),
             colors: .constant([Color.gray.opacity(1), Color.black]),
             songs: .constant(Constants().artistSongs["Sagopa Kajmer"] ?? []),

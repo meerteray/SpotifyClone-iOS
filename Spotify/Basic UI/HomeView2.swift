@@ -12,11 +12,9 @@ struct HomeView2: View {
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
-            /*vf
-            */
             VStack(alignment: .leading, spacing: 20) {
                 
-                NavigationLink(destination: PlaylistView(
+                NavigationLink(destination: PlaylistView2(
                     image: $image,
                     colors: $colors,
                     songs: $songs,

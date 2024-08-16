@@ -40,7 +40,6 @@ struct HomeView: View {
                                     viewModel.selectUser(user)
                                 }) {
                                     HStack(spacing: 0) {
-                                       /* f*/
                                         
                                         AsyncImage(url: URL(string: user.imageURL)) { phase in
                                             if let image = phase.image {
@@ -55,39 +54,39 @@ struct HomeView: View {
                                                 ProgressView()
                                             }
                                         }
-                                            
-                                            VStack(alignment: .leading) {
+                                        
+                                        VStack(alignment: .leading) {
+                                            Text(user.name)
+                                                .font(.headline)
+                                                .foregroundColor(.white)
+                                            if !user.name.isEmpty {
                                                 Text(user.name)
-                                                    .font(.headline)
-                                                    .foregroundColor(.white)
-                                                if !user.name.isEmpty {
-                                                    Text(user.name)
-                                                        .font(.subheadline)
-                                                        .foregroundColor(.gray)
-                                                }
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.gray)
                                             }
-                                            .padding(.leading, 10)
-                                            Spacer()
                                         }
-                                        .frame(height: 60)
-                                        .background(Color.gray.opacity(0.3))
-                                        .cornerRadius(5)
+                                        .padding(.leading, 10)
+                                        Spacer()
                                     }
+                                    .frame(height: 60)
+                                    .background(Color.gray.opacity(0.3))
+                                    .cornerRadius(5)
                                 }
                             }
-                            .padding()
                         }
-                        
+                        .padding()
                     }
-                    .onAppear {
-                        viewModel.fetchUsers()
-                    }
+                    
+                }
+                .onAppear {
+                    viewModel.fetchUsers()
                 }
             }
         }
     }
-    
-    
-    #Preview {
-        HomeView()
-    }
+}
+
+
+#Preview {
+    HomeView()
+}
