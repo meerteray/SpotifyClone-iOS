@@ -14,7 +14,6 @@ struct PlaylistView2: View {
     @State private var showTitle = false
     @State private var scrollOffset: CGFloat = 0
     
-    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: colors),

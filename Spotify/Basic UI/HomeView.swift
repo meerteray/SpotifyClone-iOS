@@ -37,47 +37,51 @@ struct HomeView: View {
                         LazyVGrid(columns: columns, spacing: 20) {
                             ForEach(viewModel.users) { user in
                                 
-                                HStack(spacing: 0) {
+                                
+                            NavigationLink(destination: PlaylistView()) {
                                     
-                                    AsyncImage(url: URL(string: user.imageURL)) { phase in
-                                        if let image = phase.image {
-                                            image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 60, height: 60)
-                                                .clipped()
-                                        } else if phase.error != nil {
-                                            Text("Görsel Yüklenemedi")
-                                        } else {
-                                            ProgressView()
+                                
+                                    HStack(spacing: 0) {
+                                        AsyncImage(url: URL(string: user.imageURL)) { phase in
+                                            if let image = phase.image {
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 60, height: 60)
+                                                    .clipped()
+                                            } else if phase.error != nil {
+                                                Text("Görsel Yüklenemedi")
+                                            } else {
+                                                ProgressView()
+                                            }
                                         }
-                                    }
-                                    
-                                    VStack(alignment: .leading) {
-                                        Text(user.name)
-                                            .font(.headline)
-                                            .foregroundColor(.white)
-                                        if !user.name.isEmpty {
+                                        
+                                        VStack(alignment: .leading) {
                                             Text(user.name)
-                                                .font(.subheadline)
-                                                .foregroundColor(.gray)
+                                                .font(.headline)
+                                                .foregroundColor(.white)
+                                            if !user.name.isEmpty {
+                                                Text(user.name)
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.gray)
+                                            }
                                         }
+                                        .padding(.leading, 10)
+                                        Spacer()
                                     }
-                                    .padding(.leading, 10)
-                                    Spacer()
+                                    .frame(height: 60)
+                                    .background(Color.gray.opacity(0.3))
+                                    .cornerRadius(5)
                                 }
-                                .frame(height: 60)
-                                .background(Color.gray.opacity(0.3))
-                                .cornerRadius(5)
                             }
                         }
+                        .padding()
                     }
-                    .padding()
+                    
                 }
-                
-            }
-            .onAppear {
-                viewModel.fetchUsers()
+                .onAppear {
+                    viewModel.fetchUsers()
+                }
             }
         }
     }
