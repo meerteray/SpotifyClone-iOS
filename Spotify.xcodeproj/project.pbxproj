@@ -13,14 +13,12 @@
 		E319F0F12C53E298002BD4A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E319F0F02C53E298002BD4A9 /* Preview Assets.xcassets */; };
 		E319F1002C54C351002BD4A9 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E319F0FF2C54C351002BD4A9 /* SplashView.swift */; };
 		E33B19D62C5D1B5200F98A3D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33B19D52C5D1B5200F98A3D /* Constants.swift */; };
-		E33B19DA2C5D4A0700F98A3D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33B19D92C5D4A0700F98A3D /* HomeView.swift */; };
 		E33B19DD2C5D4B3900F98A3D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E33B19DC2C5D4B3900F98A3D /* FirebaseAnalytics */; };
 		E33B19DF2C5D4B3900F98A3D /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = E33B19DE2C5D4B3900F98A3D /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		E33B19E12C5D4B3900F98A3D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E33B19E02C5D4B3900F98A3D /* FirebaseAuth */; };
 		E33B19E32C5D4B3900F98A3D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E33B19E22C5D4B3900F98A3D /* FirebaseFirestore */; };
 		E33B19E52C5D4B3900F98A3D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E33B19E42C5D4B3900F98A3D /* FirebaseStorage */; };
 		E33B19E72C5D4B6F00F98A3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E33B19E62C5D4B6F00F98A3D /* GoogleService-Info.plist */; };
-		E365F44C2C6F8515002DAC3C /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E365F44B2C6F8515002DAC3C /* PlaylistView.swift */; };
 		E39868EF2C5E5BE50081ADBB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39868EE2C5E5BE50081ADBB /* HomeViewModel.swift */; };
 		E39868F12C5E5CA30081ADBB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39868F02C5E5CA30081ADBB /* Model.swift */; };
 		E3A1ACC12C5C029200FC4BD2 /* Firuze.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A1ACC02C5C029200FC4BD2 /* Firuze.mp3 */; };
@@ -31,10 +29,10 @@
 		E3A1ACCB2C5C053400FC4BD2 /* Aldatıldık.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A1ACCA2C5C053400FC4BD2 /* Aldatıldık.mp3 */; };
 		E3A1ACCF2C5C059E00FC4BD2 /* İkili Delilik.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A1ACCE2C5C059E00FC4BD2 /* İkili Delilik.mp3 */; };
 		E3A1ACD62C5C08D400FC4BD2 /* Tutsak.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A1ACD52C5C08D400FC4BD2 /* Tutsak.mp3 */; };
-		E3A1ACDA2C5C0DEF00FC4BD2 /* PlaylistView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView2.swift */; };
+		E3A1ACDA2C5C0DEF00FC4BD2 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */; };
 		E3A939762C5AA86C00B0275B /* Kaybolan Yıllar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E3A939752C5AA86C00B0275B /* Kaybolan Yıllar.mp3 */; };
 		E3C352C42C5565C300DF2A37 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C352C32C5565C300DF2A37 /* MainView.swift */; };
-		E3C352C62C5648E000DF2A37 /* HomeView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C352C52C5648E000DF2A37 /* HomeView2.swift */; };
+		E3C352C62C5648E000DF2A37 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C352C52C5648E000DF2A37 /* HomeView.swift */; };
 		E3C352C82C5648EE00DF2A37 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C352C72C5648EE00DF2A37 /* SearchView.swift */; };
 		E3C352CA2C5648FD00DF2A37 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C352C92C5648FD00DF2A37 /* LibraryView.swift */; };
 /* End PBXBuildFile section */
@@ -47,9 +45,7 @@
 		E319F0F02C53E298002BD4A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E319F0FF2C54C351002BD4A9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E33B19D52C5D1B5200F98A3D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E33B19D92C5D4A0700F98A3D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E33B19E62C5D4B6F00F98A3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E365F44B2C6F8515002DAC3C /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 		E39868EE2C5E5BE50081ADBB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E39868F02C5E5CA30081ADBB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E3A1ACC02C5C029200FC4BD2 /* Firuze.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Firuze.mp3; sourceTree = "<group>"; };
@@ -60,10 +56,10 @@
 		E3A1ACCA2C5C053400FC4BD2 /* Aldatıldık.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aldatıldık.mp3"; sourceTree = "<group>"; };
 		E3A1ACCE2C5C059E00FC4BD2 /* İkili Delilik.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "İkili Delilik.mp3"; sourceTree = "<group>"; };
 		E3A1ACD52C5C08D400FC4BD2 /* Tutsak.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Tutsak.mp3; sourceTree = "<group>"; };
-		E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView2.swift; sourceTree = "<group>"; };
+		E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 		E3A939752C5AA86C00B0275B /* Kaybolan Yıllar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kaybolan Yıllar.mp3"; sourceTree = "<group>"; };
 		E3C352C32C5565C300DF2A37 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		E3C352C52C5648E000DF2A37 /* HomeView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView2.swift; sourceTree = "<group>"; };
+		E3C352C52C5648E000DF2A37 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E3C352C72C5648EE00DF2A37 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		E3C352C92C5648FD00DF2A37 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,8 +141,7 @@
 		E3A939702C5A539200B0275B /* Playlists */ = {
 			isa = PBXGroup;
 			children = (
-				E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView2.swift */,
-				E365F44B2C6F8515002DAC3C /* PlaylistView.swift */,
+				E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -154,12 +149,11 @@
 		E3C352CB2C56490400DF2A37 /* Basic UI */ = {
 			isa = PBXGroup;
 			children = (
-				E3C352C52C5648E000DF2A37 /* HomeView2.swift */,
+				E3C352C52C5648E000DF2A37 /* HomeView.swift */,
 				E3C352C72C5648EE00DF2A37 /* SearchView.swift */,
 				E3C352C92C5648FD00DF2A37 /* LibraryView.swift */,
 				E39868F02C5E5CA30081ADBB /* Model.swift */,
 				E39868EE2C5E5BE50081ADBB /* HomeViewModel.swift */,
-				E33B19D92C5D4A0700F98A3D /* HomeView.swift */,
 			);
 			path = "Basic UI";
 			sourceTree = "<group>";
@@ -258,12 +252,10 @@
 				E319F0EC2C53E297002BD4A9 /* LoginView.swift in Sources */,
 				E319F0EA2C53E297002BD4A9 /* SpotifyApp.swift in Sources */,
 				E39868F12C5E5CA30081ADBB /* Model.swift in Sources */,
-				E33B19DA2C5D4A0700F98A3D /* HomeView.swift in Sources */,
-				E3A1ACDA2C5C0DEF00FC4BD2 /* PlaylistView2.swift in Sources */,
-				E365F44C2C6F8515002DAC3C /* PlaylistView.swift in Sources */,
+				E3A1ACDA2C5C0DEF00FC4BD2 /* PlaylistView.swift in Sources */,
 				E33B19D62C5D1B5200F98A3D /* Constants.swift in Sources */,
 				E3C352C42C5565C300DF2A37 /* MainView.swift in Sources */,
-				E3C352C62C5648E000DF2A37 /* HomeView2.swift in Sources */,
+				E3C352C62C5648E000DF2A37 /* HomeView.swift in Sources */,
 				E3C352C82C5648EE00DF2A37 /* SearchView.swift in Sources */,
 				E39868EF2C5E5BE50081ADBB /* HomeViewModel.swift in Sources */,
 				E319F1002C54C351002BD4A9 /* SplashView.swift in Sources */,
