@@ -62,9 +62,9 @@ struct PlaylistView: View {
         selectedUser:
             User(id: "1", name: "Sezen Aksu", imageURL:"https://firebasestorage.googleapis.com/v0/b/spotifyclone-80fcd.appspot.com/o/sezenAksuImage.jpg?alt=media&token=4051d5d1-1c0c-4412-9e7d-c142f29f5cef",
                  songs: [
-                    Song(id: "1", name: "Gülümse"),
-                    Song(id: "2", name: "Firuze"),
-                    Song(id: "3", name: "Kaybolan Yıllar")
+                    Song(id: "1", name: "Gülümse", song: ""),
+                    Song(id: "2", name: "Firuze", song: ""),
+                    Song(id: "3", name: "Kaybolan Yıllar", song: "")
                  ])
     )
 }

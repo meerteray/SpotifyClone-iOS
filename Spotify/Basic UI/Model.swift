@@ -12,4 +12,5 @@ struct User: Identifiable {
 struct Song: Identifiable {
     var id: String
     var name: String
+    var song: String
 }
