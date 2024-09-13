@@ -8,6 +8,8 @@ struct PlaylistView: View {
     @State private var audioPlayer: AVAudioPlayer?
     @State private var isPlaying = false
     @State private var currentSong: Song?
+    @State private var playbackProgress: Double = 0.0 
+    @State private var timer: Timer?
     
     var body: some View {
         ZStack {
@@ -23,6 +25,8 @@ struct PlaylistView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 200, height: 200)
+                                        .clipShape(Rectangle())
+                                        .cornerRadius(10)
                                 } else {
                                     ProgressView()
                                 }
@@ -59,40 +63,51 @@ struct PlaylistView: View {
         .onAppear {
             fetchImageFromFirebase()
         }
+        .onDisappear {
+            stopTimer()
+        }
     }
     
     private var playerControls: some View {
-        HStack {
-            if let currentSong = currentSong, let userImage = image {
-                Image(uiImage: userImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 44, height: 44)
-                    .clipShape(Circle())
-                    .padding(.trailing, 8)
-                
-                Text(currentSong.name)
-                    .foregroundColor(.white)
-                    .font(.headline)
-            }
-            Spacer()
-            Button(action: {
-                if isPlaying {
-                    audioPlayer?.pause()
-                } else {
-                    audioPlayer?.play()
+        VStack {
+            HStack {
+                if let currentSong = currentSong, let userImage = image {
+                    Image(uiImage: userImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 44, height: 44)
+                        .clipShape(Rectangle())
+                        .cornerRadius(8)
+                        .padding(.trailing, 8)
+                    
+                    Text(currentSong.name)
+                        .foregroundColor(.white)
+                        .font(.headline)
                 }
-                isPlaying.toggle()
-            }) {
-                Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 44, height: 44)
-                    .foregroundColor(.white)
+                Spacer()
+                Button(action: {
+                    if isPlaying {
+                        audioPlayer?.pause()
+                    } else {
+                        audioPlayer?.play()
+                    }
+                    isPlaying.toggle()
+                }) {
+                    Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 44, height: 44)
+                        .foregroundColor(.white)
+                }
             }
+            .padding()
+            .background(Color.gray.opacity(0.3))
+            
+            // İlerleme çubuğu
+            ProgressBar(value: $playbackProgress)
+                .frame(height: 3)
+                .padding()
         }
-        .padding()
-        .background(Color.gray.opacity(0.3))
     }
     
     private func fetchImageFromFirebase() {
@@ -128,8 +143,8 @@ struct PlaylistView: View {
         audioPlayer?.stop()
         audioPlayer = nil
         isPlaying = false
+        stopTimer()
     }
-    
     
     private func playSong(_ song: Song) {
         guard let url = URL(string: song.song.removingPercentEncoding ?? song.song) else {
@@ -158,11 +173,46 @@ struct PlaylistView: View {
                 DispatchQueue.main.async {
                     currentSong = song
                     isPlaying = true
+                    startTimer()
                 }
             } catch {
                 print("Error creating audio player: \(error.localizedDescription)")
             }
         }.resume()
     }
+    
+    private func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            updatePlaybackProgress()
+        }
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func updatePlaybackProgress() {
+        guard let player = audioPlayer else { return }
+        let progress = player.currentTime / player.duration
+        playbackProgress = progress
+    }
 }
 
+struct ProgressBar: View {
+    @Binding var value: Double
+    
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .foregroundColor(Color.gray.opacity(0.3))
+                
+                Rectangle()
+                    .foregroundColor(.green)
+                    .frame(width: CGFloat(value) * geometry.size.width)
+            }
+            .cornerRadius(1.5)
+        }
+    }
+}
