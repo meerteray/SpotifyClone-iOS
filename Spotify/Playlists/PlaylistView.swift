@@ -6,22 +6,22 @@ struct PlaylistView: View {
     @State private var image: UIImage?
     
     var body: some View {
-        VStack {
-            if let image = image {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200)
-            } else {
-                ProgressView()
+            VStack {
+                if let image = image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200, height: 200)
+                } else {
+                    ProgressView()
+                }
+                Text(selectedUser.name)
+                    .font(.title)
             }
-            Text(selectedUser.name)
-                .font(.title)
+            .onAppear {
+                fetchImageFromFirebase()
+            }
         }
-        .onAppear {
-            fetchImageFromFirebase()
-        }
-    }
     
     private func fetchImageFromFirebase() {
         let storage = Storage.storage()

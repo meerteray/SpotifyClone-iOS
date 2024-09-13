@@ -3,8 +3,9 @@ import SwiftUI
 struct MainView: View {
     
     init() {
-        UITabBar.appearance().backgroundColor = UIColor(.black)
+        UITabBar.appearance().backgroundColor = .black
         UITabBar.appearance().unselectedItemTintColor = UIColor.gray
+        UITabBar.appearance().barTintColor = .black
     }
     
     var body: some View {
