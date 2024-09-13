@@ -8,21 +8,34 @@ struct PlaylistView: View {
     var body: some View {
         ZStack {
             Color.black.edgesIgnoringSafeArea(.all)
-            VStack {
-                if let image = image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 200, height: 200)
-                } else {
-                    ProgressView()
+            ScrollView {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Spacer()
+                        VStack {
+                            if let image = image {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 200, height: 200)
+                            } else {
+                                ProgressView()
+                            }
+                            Text(selectedUser.name)
+                                .font(.title)
+                                .foregroundColor(.white)
+                        }
+                        Spacer()
+                    }
+                    ForEach(selectedUser.songs) { song in
+                        Text(song.name)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 4)
+                    }
                 }
-                Text(selectedUser.name)
-                    .font(.title)
-                    .foregroundColor(.white)
+                .padding()
             }
-            .padding()
-            }
+        }
         .onAppear {
             fetchImageFromFirebase()
         }
@@ -47,5 +60,11 @@ struct PlaylistView: View {
 #Preview {
     PlaylistView(
         selectedUser:
-            User(id: "1", name: "Sezen Aksu", imageURL:"https://firebasestorage.googleapis.com/v0/b/spotifyclone-80fcd.appspot.com/o/sezenAksuImage.jpg?alt=media&token=4051d5d1-1c0c-4412-9e7d-c142f29f5cef"))
+            User(id: "1", name: "Sezen Aksu", imageURL:"https://firebasestorage.googleapis.com/v0/b/spotifyclone-80fcd.appspot.com/o/sezenAksuImage.jpg?alt=media&token=4051d5d1-1c0c-4412-9e7d-c142f29f5cef",
+                 songs: [
+                    Song(id: "1", name: "Gülümse"),
+                    Song(id: "2", name: "Firuze"),
+                    Song(id: "3", name: "Kaybolan Yıllar")
+                 ])
+    )
 }
