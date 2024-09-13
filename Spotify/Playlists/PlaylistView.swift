@@ -6,6 +6,8 @@ struct PlaylistView: View {
     @State private var image: UIImage?
     
     var body: some View {
+        ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
             VStack {
                 if let image = image {
                     Image(uiImage: image)
@@ -17,11 +19,14 @@ struct PlaylistView: View {
                 }
                 Text(selectedUser.name)
                     .font(.title)
+                    .foregroundColor(.white)
             }
-            .onAppear {
-                fetchImageFromFirebase()
+            .padding()
             }
+        .onAppear {
+            fetchImageFromFirebase()
         }
+    }
     
     private func fetchImageFromFirebase() {
         let storage = Storage.storage()
