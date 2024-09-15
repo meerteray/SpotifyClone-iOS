@@ -14,22 +14,6 @@ class PlaylistViewModel: ObservableObject {
     
     init(selectedUser: User) {
         self.selectedUser = selectedUser
-        fetchImageFromFirebase()
-    }
-    
-    func fetchImageFromFirebase() {
-        let storage = Storage.storage()
-        let reference = storage.reference(forURL: selectedUser.imageURL)
-        
-        reference.getData(maxSize: 10 * 1024 * 1024) { [weak self] data, error in
-            if let error = error {
-                print("Error downloading image: \(error.localizedDescription)")
-            } else if let data = data, let uiImage = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self?.image = uiImage
-                }
-            }
-        }
     }
     
     func playOrPauseSong(_ song: Song) {

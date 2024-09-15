@@ -20,16 +20,20 @@ struct PlaylistView: View {
                         HStack {
                             Spacer()
                             VStack {
-                                if let image = viewModel.image {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 200, height: 200)
-                                        .clipShape(Rectangle())
-                                        .cornerRadius(10)
-                                } else {
-                                    ProgressView()
+                                AsyncImage(url: URL(string: selectedUser.imageURL)) { phase in
+                                    if let image = phase.image {
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 200, height: 200)
+                                            .cornerRadius(10)
+                                    } else if phase.error != nil {
+                                        Text("Görsel Yüklenemedi")
+                                    } else {
+                                        ProgressView()
+                                    }
                                 }
+                                
                                 Text(selectedUser.name)
                                     .font(.title)
                                     .foregroundColor(.white)
