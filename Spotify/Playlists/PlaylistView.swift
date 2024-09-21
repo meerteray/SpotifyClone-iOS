@@ -1,14 +1,11 @@
 import SwiftUI
-import FirebaseStorage
-import AVFoundation
 
 struct PlaylistView: View {
-    let selectedUser: User
-    @State private var audioPlayer: AVAudioPlayer?
-    @State private var isPlaying = false
-    @State private var currentSong: Song?
-    @State private var playbackProgress: Double = 0.0
-    @State private var timer: Timer?
+    @StateObject private var viewModel: PlaylistViewModel
+    
+    init(selectedUser: User) {
+        _viewModel = StateObject(wrappedValue: PlaylistViewModel(selectedUser: selectedUser))
+    }
     
     var body: some View {
         ZStack {
@@ -16,64 +13,70 @@ struct PlaylistView: View {
             VStack {
                 ScrollView {
                     VStack(alignment: .leading) {
-                        HStack {
-                            Spacer()
-                            VStack {
-                                AsyncImage(url: URL(string: selectedUser.imageURL)) { phase in
-                                    if let image = phase.image {
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 200, height: 200)
-                                            .cornerRadius(10)
-                                    } else if phase.error != nil {
-                                        Text("Görsel Yüklenemedi")
-                                    } else {
-                                        ProgressView()
-                                    }
-                                }
-                                Text(selectedUser.name)
-                                    .font(.title)
-                                    .foregroundColor(.white)
-                            }
-                            Spacer()
-                        }
-                        ForEach(selectedUser.songs) { song in
-                            Button(action: {
-                                playOrPauseSong(song)
-                            }) {
-                               HStack {
-                                    Text(song.name)
-                                        .foregroundColor(currentSong?.id == song.id ? .green : .white)
-                                        .padding(.vertical, 4)
-                                    
-                                    Spacer()
-                                }
-                            }
-                        }
+                        userHeader
+                        songList
                     }
                     .padding()
                 }
                 
                 Spacer()
                 
-                if currentSong != nil {
+                if viewModel.currentSong != nil {
                     playerControls
                 }
             }
         }
-        .onAppear {
-        }
         .onDisappear {
-            stopTimer()
+            viewModel.stopTimer()
+        }
+    }
+    
+    private var userHeader: some View {
+        HStack {
+            Spacer()
+            VStack {
+                AsyncImage(url: URL(string: viewModel.selectedUser.imageURL)) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 200, height: 200)
+                            .cornerRadius(10)
+                    } else if phase.error != nil {
+                        Text("Görsel Yüklenemedi")
+                    } else {
+                        ProgressView()
+                    }
+                }
+                Text(viewModel.selectedUser.name)
+                    .font(.title)
+                    .foregroundColor(.white)
+            }
+            Spacer()
+        }
+    }
+    
+    private var songList: some View {
+        ForEach(viewModel.selectedUser.songs) { song in
+            Button(action: {
+                viewModel.playOrPauseSong(song)
+            }) {
+               HStack {
+                    Text(song.name)
+                        .foregroundColor(viewModel.currentSong?.id == song.id ? .green : .white)
+                        .padding(.vertical, 4)
+                    
+                    Spacer()
+                }
+            }
         }
     }
     
     private var playerControls: some View {
         VStack {
             HStack {
-                if let currentSong = currentSong {
-                    AsyncImage(url: URL(string: selectedUser.imageURL)) { phase in
+                if let currentSong = viewModel.currentSong {
+                    AsyncImage(url: URL(string: viewModel.selectedUser.imageURL)) { phase in
                         if let image = phase.image {
                             image
                                 .resizable()
@@ -93,21 +96,16 @@ struct PlaylistView: View {
                         Text(currentSong.name)
                             .foregroundColor(.white)
                             .font(.headline)
-                        Text(selectedUser.name)
+                        Text(viewModel.selectedUser.name)
                             .foregroundColor(.gray)
                             .font(.subheadline)
                     }
                 }
                 Spacer()
                 Button(action: {
-                    if isPlaying {
-                        audioPlayer?.pause()
-                    } else {
-                        audioPlayer?.play()
-                    }
-                    isPlaying.toggle()
+                    viewModel.togglePlayPause()
                 }) {
-                    Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                    Image(systemName: viewModel.isPlaying ? "pause.circle.fill" : "play.circle.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 44, height: 44)
@@ -117,83 +115,10 @@ struct PlaylistView: View {
             .padding()
             .background(Color.gray.opacity(0.3))
             
-            ProgressBar(value: $playbackProgress)
+            ProgressBar(value: $viewModel.playbackProgress)
                 .frame(height: 3)
                 .padding(.horizontal)
         }
-    }
-    
-    private func playOrPauseSong(_ song: Song) {
-        if currentSong?.id == song.id {
-            if isPlaying {
-                audioPlayer?.pause()
-            } else {
-                audioPlayer?.play()
-            }
-            isPlaying.toggle()
-        } else {
-            stopCurrentSong()
-            playSong(song)
-        }
-    }
-    
-    private func stopCurrentSong() {
-        audioPlayer?.stop()
-        audioPlayer = nil
-        isPlaying = false
-        stopTimer()
-    }
-    
-    private func playSong(_ song: Song) {
-        guard let url = URL(string: song.song.removingPercentEncoding ?? song.song) else {
-            print("Invalid song URL: \(song.song)")
-            return
-        }
-        
-        print("Playing song from URL: \(url)")
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Error downloading song: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received for song: \(song.name)")
-                return
-            }
-            
-            print("Downloaded data size: \(data.count) bytes")
-            
-            do {
-                audioPlayer = try AVAudioPlayer(data: data)
-                audioPlayer?.play()
-                DispatchQueue.main.async {
-                    currentSong = song
-                    isPlaying = true
-                    startTimer()
-                }
-            } catch {
-                print("Error creating audio player: \(error.localizedDescription)")
-            }
-        }.resume()
-    }
-    
-    private func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            updatePlaybackProgress()
-        }
-    }
-    
-    private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    private func updatePlaybackProgress() {
-        guard let player = audioPlayer else { return }
-        let progress = player.currentTime / player.duration
-        playbackProgress = progress
     }
 }
 

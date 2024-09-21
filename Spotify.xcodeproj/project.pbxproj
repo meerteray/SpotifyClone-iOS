@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3046EE52C9EF4CB009E39AB /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3046EE42C9EF4CB009E39AB /* PlaylistViewModel.swift */; };
 		E319F0EA2C53E297002BD4A9 /* SpotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E319F0E92C53E297002BD4A9 /* SpotifyApp.swift */; };
 		E319F0EC2C53E297002BD4A9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E319F0EB2C53E297002BD4A9 /* LoginView.swift */; };
 		E319F0EE2C53E298002BD4A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E319F0ED2C53E298002BD4A9 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E3046EE42C9EF4CB009E39AB /* PlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
 		E319F0E62C53E297002BD4A9 /* Spotify Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spotify Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E319F0E92C53E297002BD4A9 /* SpotifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyApp.swift; sourceTree = "<group>"; };
 		E319F0EB2C53E297002BD4A9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */,
+				E3046EE42C9EF4CB009E39AB /* PlaylistViewModel.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				E3C352C82C5648EE00DF2A37 /* SearchView.swift in Sources */,
 				E39868EF2C5E5BE50081ADBB /* HomeViewModel.swift in Sources */,
 				E319F1002C54C351002BD4A9 /* SplashView.swift in Sources */,
+				E3046EE52C9EF4CB009E39AB /* PlaylistViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
