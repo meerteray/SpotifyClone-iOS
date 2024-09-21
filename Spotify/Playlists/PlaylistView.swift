@@ -57,17 +57,45 @@ struct PlaylistView: View {
     }
     
     private var songList: some View {
-        ForEach(viewModel.selectedUser.songs) { song in
-            Button(action: {
-                viewModel.playOrPauseSong(song)
-            }) {
-               HStack {
-                    Text(song.name)
-                        .foregroundColor(viewModel.currentSong?.id == song.id ? .green : .white)
-                        .padding(.vertical, 4)
-                    
-                    Spacer()
+        LazyVStack(spacing: 16) {
+            ForEach(viewModel.selectedUser.songs) { song in
+                Button(action: {
+                    viewModel.playOrPauseSong(song)
+                }) {
+                    HStack(spacing: 12) {
+                        AsyncImage(url: URL(string: viewModel.selectedUser.imageURL)) { phase in
+                            if let image = phase.image {
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 56, height: 56)
+                                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                            } else {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color.gray.opacity(0.3))
+                                    .frame(width: 56, height: 56)
+                            }
+                        }
+                        .frame(width: 56, height: 56)
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(song.name)
+                                .font(.body)
+                                .foregroundColor(.white)
+                            Text(viewModel.selectedUser.name)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        }
+                        
+                        Spacer()
+                        
+                        if viewModel.currentSong?.id == song.id && viewModel.isPlaying {
+                            Image(systemName: "equalizer")
+                                .foregroundColor(.green)
+                        }
+                    }
                 }
+                .padding(.horizontal)
             }
         }
     }
