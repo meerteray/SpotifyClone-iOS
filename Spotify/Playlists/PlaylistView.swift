@@ -3,13 +3,13 @@ import FirebaseStorage
 import AVFoundation
 
 struct PlaylistView: View {
-    @StateObject private var viewModel: PlaylistViewModel
     let selectedUser: User
-    
-    init(selectedUser: User) {
-        self.selectedUser = selectedUser
-        self._viewModel = StateObject(wrappedValue: PlaylistViewModel(selectedUser: selectedUser))
-    }
+    @State private var image: UIImage?
+    @State private var audioPlayer: AVAudioPlayer?
+    @State private var isPlaying = false
+    @State private var currentSong: Song?
+    @State private var playbackProgress: Double = 0.0
+    @State private var timer: Timer?
     
     var body: some View {
         ZStack {
@@ -24,7 +24,7 @@ struct PlaylistView: View {
                                     if let image = phase.image {
                                         image
                                             .resizable()
-                                            .aspectRatio(contentMode: .fit)
+                                            .aspectRatio(contentMode: .fill)
                                             .frame(width: 200, height: 200)
                                             .cornerRadius(10)
                                     } else if phase.error != nil {
@@ -33,7 +33,6 @@ struct PlaylistView: View {
                                         ProgressView()
                                     }
                                 }
-                                
                                 Text(selectedUser.name)
                                     .font(.title)
                                     .foregroundColor(.white)
@@ -42,11 +41,11 @@ struct PlaylistView: View {
                         }
                         ForEach(selectedUser.songs) { song in
                             Button(action: {
-                                viewModel.playOrPauseSong(song)
+                                playOrPauseSong(song)
                             }) {
-                                HStack {
+                               HStack {
                                     Text(song.name)
-                                        .foregroundColor(viewModel.currentSong?.id == song.id ? .green : .white)
+                                        .foregroundColor(currentSong?.id == song.id ? .green : .white)
                                         .padding(.vertical, 4)
                                     
                                     Spacer()
@@ -59,20 +58,22 @@ struct PlaylistView: View {
                 
                 Spacer()
                 
-                if viewModel.currentSong != nil {
+                if currentSong != nil {
                     playerControls
                 }
             }
         }
+        .onAppear {
+        }
         .onDisappear {
-            viewModel.stopTimer()
+            stopTimer()
         }
     }
     
     private var playerControls: some View {
         VStack {
             HStack {
-                if let currentSong = viewModel.currentSong, let userImage = viewModel.image {
+                if let currentSong = currentSong, let userImage = image {
                     Image(uiImage: userImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -87,11 +88,14 @@ struct PlaylistView: View {
                 }
                 Spacer()
                 Button(action: {
-                    if let currentSong = viewModel.currentSong {
-                        viewModel.playOrPauseSong(currentSong)
+                    if isPlaying {
+                        audioPlayer?.pause()
+                    } else {
+                        audioPlayer?.play()
                     }
+                    isPlaying.toggle()
                 }) {
-                    Image(systemName: viewModel.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                    Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 44, height: 44)
@@ -101,10 +105,82 @@ struct PlaylistView: View {
             .padding()
             .background(Color.gray.opacity(0.3))
             
-            ProgressBar(value: $viewModel.playbackProgress)
+            ProgressBar(value: $playbackProgress)
                 .frame(height: 3)
                 .padding()
         }
+    }
+    private func playOrPauseSong(_ song: Song) {
+        if currentSong?.id == song.id {
+            if isPlaying {
+                audioPlayer?.pause()
+            } else {
+                audioPlayer?.play()
+            }
+            isPlaying.toggle()
+        } else {
+            stopCurrentSong()
+            playSong(song)
+        }
+    }
+    
+    private func stopCurrentSong() {
+        audioPlayer?.stop()
+        audioPlayer = nil
+        isPlaying = false
+        stopTimer()
+    }
+    
+    private func playSong(_ song: Song) {
+        guard let url = URL(string: song.song.removingPercentEncoding ?? song.song) else {
+            print("Invalid song URL: \(song.song)")
+            return
+        }
+        
+        print("Playing song from URL: \(url)")
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Error downloading song: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received for song: \(song.name)")
+                return
+            }
+            
+            print("Downloaded data size: \(data.count) bytes")
+            
+            do {
+                audioPlayer = try AVAudioPlayer(data: data)
+                audioPlayer?.play()
+                DispatchQueue.main.async {
+                    currentSong = song
+                    isPlaying = true
+                    startTimer()
+                }
+            } catch {
+                print("Error creating audio player: \(error.localizedDescription)")
+            }
+        }.resume()
+    }
+    
+    private func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            updatePlaybackProgress()
+        }
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func updatePlaybackProgress() {
+        guard let player = audioPlayer else { return }
+        let progress = player.currentTime / player.duration
+        playbackProgress = progress
     }
 }
 
