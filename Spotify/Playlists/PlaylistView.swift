@@ -68,15 +68,21 @@ struct PlaylistView: View {
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: 56, height: 56)
+                                    .frame(width: 48, height: 48)
                                     .clipShape(RoundedRectangle(cornerRadius: 4))
                             } else {
                                 RoundedRectangle(cornerRadius: 4)
                                     .fill(Color.gray.opacity(0.3))
-                                    .frame(width: 56, height: 56)
+                                    .frame(width: 48, height: 48)
                             }
                         }
-                        .frame(width: 56, height: 56)
+                        .frame(width: 48, height: 48)
+                        
+                        if viewModel.currentSong?.id == song.id && viewModel.isPlaying {
+                                                   PlayingAnimation()
+                                                       .frame(width: 14, height: 14)
+                                                       .padding(.trailing, 4)
+                                               }
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text(song.name)
@@ -88,16 +94,14 @@ struct PlaylistView: View {
                         }
                         
                         Spacer()
-                        
-                        if viewModel.currentSong?.id == song.id && viewModel.isPlaying {
-                            Image(systemName: "equalizer")
-                                .foregroundColor(.green)
-                        }
                     }
+                    .padding(.vertical, 4)
+
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 8)
             }
         }
+        .padding(.leading, 8)
     }
     
     private var playerControls: some View {
@@ -164,6 +168,31 @@ struct ProgressBar: View {
                     .frame(width: CGFloat(value) * geometry.size.width)
             }
             .cornerRadius(1.5)
+        }
+    }
+}
+
+struct PlayingAnimation: View {
+    @State private var isAnimating = false
+    
+    var body: some View {
+        HStack(spacing: 2) {
+            ForEach(0..<3) { index in
+                Capsule()
+                    .fill(Color.green)
+                    .frame(width: 2, height: 14)
+                    .scaleEffect(y: isAnimating ? 1 : 0.3)
+                    .animation(
+                        Animation
+                            .easeInOut(duration: 0.5)
+                            .repeatForever()
+                            .delay(Double(index) * 0.2),
+                        value: isAnimating
+                    )
+            }
+        }
+        .onAppear {
+            isAnimating = true
         }
     }
 }

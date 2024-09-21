@@ -51,7 +51,7 @@ class HomeViewModel: ObservableObject {
                 let id = songDocument.documentID
                 if let name = data["name"] as? String {
                     let song = data["song"] as? String  ?? ""
-                    print("Şarkı ismi: \(name) fdkfdsl \(song)")
+                    print("Şarkı ismi: \(name) 1905 \(song)")
 
                     return Song(id: id, name: name, song: song)
 
