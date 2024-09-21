@@ -77,8 +77,9 @@ struct FullScreenPlayerView: View {
                 
                 HStack(spacing: 40) {
                     Button(action: {
+                        viewModel.restartSong()
                     }) {
-                        Image(systemName: "backward.fill")
+                        Image(systemName: "backward.end.fill")
                             .font(.largeTitle)
                             .foregroundColor(.white)
                     }
@@ -92,8 +93,9 @@ struct FullScreenPlayerView: View {
                     }
                     
                     Button(action: {
+                        viewModel.skipToEnd()
                     }) {
-                        Image(systemName: "forward.fill")
+                        Image(systemName: "forward.end.fill")
                             .font(.largeTitle)
                             .foregroundColor(.white)
                     }

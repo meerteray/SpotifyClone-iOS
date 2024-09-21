@@ -89,4 +89,23 @@ class PlaylistViewModel: ObservableObject {
         let progress = player.currentTime / player.duration
         playbackProgress = progress
     }
+    
+    func restartSong() {
+            audioPlayer?.currentTime = 0
+            playbackProgress = 0
+        }
+
+        func skipToEnd() {
+            if let duration = audioPlayer?.duration {
+                audioPlayer?.currentTime = duration
+                playbackProgress = 1.0
+                stopPlayback()
+            }
+        }
+
+        private func stopPlayback() {
+            audioPlayer?.stop()
+            isPlaying = false
+            timer?.invalidate()
+        }
 }
