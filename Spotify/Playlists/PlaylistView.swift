@@ -79,15 +79,15 @@ struct PlaylistView: View {
                         .frame(width: 48, height: 48)
                         
                         if viewModel.currentSong?.id == song.id && viewModel.isPlaying {
-                                                   PlayingAnimation()
-                                                       .frame(width: 14, height: 14)
-                                                       .padding(.trailing, 4)
-                                               }
+                            PlayingAnimation()
+                                .frame(width: 14, height: 14)
+                                .padding(.trailing, 4)
+                        }
                         
                         VStack(alignment: .leading, spacing: 4) {
                             Text(song.name)
                                 .font(.body)
-                                .foregroundColor(.white)
+                                .foregroundColor(viewModel.currentSong?.id == song.id ? .green : .white)
                             Text(viewModel.selectedUser.name)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
@@ -96,14 +96,13 @@ struct PlaylistView: View {
                         Spacer()
                     }
                     .padding(.vertical, 4)
-
                 }
                 .padding(.horizontal, 8)
             }
         }
         .padding(.leading, 8)
     }
-    
+
     private var playerControls: some View {
         VStack {
             HStack {
@@ -181,7 +180,7 @@ struct PlayingAnimation: View {
                 Capsule()
                     .fill(Color.green)
                     .frame(width: 2, height: 14)
-                    .scaleEffect(y: isAnimating ? 1 : 0.3)
+                    .scaleEffect(y: isAnimating ? 1 : 0.3, anchor: .bottom)
                     .animation(
                         Animation
                             .easeInOut(duration: 0.5)
@@ -191,8 +190,10 @@ struct PlayingAnimation: View {
                     )
             }
         }
+        .frame(width: 14, height: 14)
         .onAppear {
             isAnimating = true
         }
     }
 }
+
