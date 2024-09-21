@@ -19,6 +19,7 @@
 		E33B19E32C5D4B3900F98A3D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E33B19E22C5D4B3900F98A3D /* FirebaseFirestore */; };
 		E33B19E52C5D4B3900F98A3D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E33B19E42C5D4B3900F98A3D /* FirebaseStorage */; };
 		E33B19E72C5D4B6F00F98A3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E33B19E62C5D4B6F00F98A3D /* GoogleService-Info.plist */; };
+		E33C22B92C9F34C40078A96E /* FullScreenPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33C22B82C9F34C40078A96E /* FullScreenPlayerView.swift */; };
 		E39868EF2C5E5BE50081ADBB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39868EE2C5E5BE50081ADBB /* HomeViewModel.swift */; };
 		E39868F12C5E5CA30081ADBB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39868F02C5E5CA30081ADBB /* Model.swift */; };
 		E3A1ACDA2C5C0DEF00FC4BD2 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */; };
@@ -37,6 +38,7 @@
 		E319F0F02C53E298002BD4A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E319F0FF2C54C351002BD4A9 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		E33B19E62C5D4B6F00F98A3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E33C22B82C9F34C40078A96E /* FullScreenPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPlayerView.swift; sourceTree = "<group>"; };
 		E39868EE2C5E5BE50081ADBB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E39868F02C5E5CA30081ADBB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				E3A1ACD92C5C0DEF00FC4BD2 /* PlaylistView.swift */,
 				E3046EE42C9EF4CB009E39AB /* PlaylistViewModel.swift */,
+				E33C22B82C9F34C40078A96E /* FullScreenPlayerView.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				E3C352C42C5565C300DF2A37 /* MainView.swift in Sources */,
 				E3C352C62C5648E000DF2A37 /* HomeView.swift in Sources */,
 				E3C352C82C5648EE00DF2A37 /* SearchView.swift in Sources */,
+				E33C22B92C9F34C40078A96E /* FullScreenPlayerView.swift in Sources */,
 				E39868EF2C5E5BE50081ADBB /* HomeViewModel.swift in Sources */,
 				E319F1002C54C351002BD4A9 /* SplashView.swift in Sources */,
 				E3046EE52C9EF4CB009E39AB /* PlaylistViewModel.swift in Sources */,

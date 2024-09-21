@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PlaylistView: View {
     @StateObject private var viewModel: PlaylistViewModel
+    @State private var showFullScreenPlayer = false
     
     init(selectedUser: User) {
         _viewModel = StateObject(wrappedValue: PlaylistViewModel(selectedUser: selectedUser))
@@ -23,11 +24,17 @@ struct PlaylistView: View {
                 
                 if viewModel.currentSong != nil {
                     playerControls
+                        .onTapGesture {
+                            showFullScreenPlayer = true
+                        }
                 }
             }
         }
         .onDisappear {
             viewModel.stopTimer()
+        }
+        .fullScreenCover(isPresented: $showFullScreenPlayer) {
+            FullScreenPlayerView(viewModel: viewModel)
         }
     }
     
@@ -102,9 +109,9 @@ struct PlaylistView: View {
         }
         .padding(.leading, 8)
     }
-
+    
     private var playerControls: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 if let currentSong = viewModel.currentSong {
                     AsyncImage(url: URL(string: viewModel.selectedUser.imageURL)) { phase in
@@ -150,6 +157,9 @@ struct PlaylistView: View {
                 .frame(height: 3)
                 .padding(.horizontal)
         }
+        .background(Color.gray.opacity(0.3))
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .padding(.horizontal)
     }
 }
 
