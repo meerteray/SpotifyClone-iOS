@@ -4,7 +4,6 @@ import AVFoundation
 
 struct PlaylistView: View {
     let selectedUser: User
-    @State private var image: UIImage?
     @State private var audioPlayer: AVAudioPlayer?
     @State private var isPlaying = false
     @State private var currentSong: Song?
@@ -73,18 +72,31 @@ struct PlaylistView: View {
     private var playerControls: some View {
         VStack {
             HStack {
-                if let currentSong = currentSong, let userImage = image {
-                    Image(uiImage: userImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 44, height: 44)
-                        .clipShape(Rectangle())
-                        .cornerRadius(8)
-                        .padding(.trailing, 8)
+                if let currentSong = currentSong {
+                    AsyncImage(url: URL(string: selectedUser.imageURL)) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 44, height: 44)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                        } else {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.gray)
+                                .frame(width: 44, height: 44)
+                        }
+                    }
+                    .frame(width: 44, height: 44)
+                    .padding(.trailing, 8)
                     
-                    Text(currentSong.name)
-                        .foregroundColor(.white)
-                        .font(.headline)
+                    VStack(alignment: .leading) {
+                        Text(currentSong.name)
+                            .foregroundColor(.white)
+                            .font(.headline)
+                        Text(selectedUser.name)
+                            .foregroundColor(.gray)
+                            .font(.subheadline)
+                    }
                 }
                 Spacer()
                 Button(action: {
@@ -107,9 +119,10 @@ struct PlaylistView: View {
             
             ProgressBar(value: $playbackProgress)
                 .frame(height: 3)
-                .padding()
+                .padding(.horizontal)
         }
     }
+    
     private func playOrPauseSong(_ song: Song) {
         if currentSong?.id == song.id {
             if isPlaying {
