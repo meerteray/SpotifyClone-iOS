@@ -34,9 +34,9 @@ struct HomeView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(viewModel.users) { user in
-                            
-                            NavigationLink(destination: PlaylistView(selectedUser: user)) {
-                                
+                         
+                
+                            NavigationLink(destination: PlaylistView(selectedUser: user, isLikedSongs: user.name == "Liked Songs" ? true : false)) {
                                 
                                 HStack(spacing: 0) {
                                     AsyncImage(url: URL(string: user.imageURL)) { phase in

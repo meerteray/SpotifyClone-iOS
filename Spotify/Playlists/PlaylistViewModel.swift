@@ -10,9 +10,19 @@ class PlaylistViewModel: ObservableObject {
     @Published var playbackProgress: Double = 0.0
     private var timer: Timer?
     private var db = Firestore.firestore()
+    @Published  var songtype: [Song] = []
     
-    init(selectedUser: User) {
+    init(selectedUser: User, isLikedSongs: Bool) {
+        
         self.selectedUser = selectedUser
+                
+        if isLikedSongs {
+            self.songtype = selectedUser.likes
+        } else {
+            
+            self.songtype = selectedUser.songs
+        }
+                
     }
     
     func playOrPauseSong(_ song: Song) {
@@ -112,7 +122,7 @@ class PlaylistViewModel: ObservableObject {
     }
     
     func addToLikedSongs(song: Song) {
-        let userId = selectedUser.id
+           
         let songRef = db.collection("users").document("000").collection("likedSongs").document(song.id)
         
         songRef.getDocument { (document, error) in

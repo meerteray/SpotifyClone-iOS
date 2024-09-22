@@ -3,9 +3,11 @@ import SwiftUI
 struct PlaylistView: View {
     @StateObject private var viewModel: PlaylistViewModel
     @State private var showFullScreenPlayer = false
+    @State private var isLikedSongs = false
     
-    init(selectedUser: User) {
-        _viewModel = StateObject(wrappedValue: PlaylistViewModel(selectedUser: selectedUser))
+    init(selectedUser: User, isLikedSongs: Bool) {
+        _viewModel = StateObject(wrappedValue: PlaylistViewModel(selectedUser: selectedUser, isLikedSongs: isLikedSongs))
+        print("liked songs bla bla \(isLikedSongs)")
     }
     
     var body: some View {
@@ -32,6 +34,7 @@ struct PlaylistView: View {
         }
         .onDisappear {
             viewModel.stopTimer()
+            
         }
         .fullScreenCover(isPresented: $showFullScreenPlayer) {
             FullScreenPlayerView(viewModel: viewModel)
@@ -65,7 +68,7 @@ struct PlaylistView: View {
     
     private var songList: some View {
         LazyVStack(spacing: 16) {
-            ForEach(viewModel.selectedUser.songs) { song in
+            ForEach(viewModel.songtype) { song in
                 Button(action: {
                     viewModel.playOrPauseSong(song)
                 }) {

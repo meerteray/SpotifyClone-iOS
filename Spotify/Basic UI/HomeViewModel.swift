@@ -27,11 +27,11 @@ class HomeViewModel: ObservableObject {
                 group.enter()
                 self.fetchSongsForUser(userId: id) { songs in
                     user.songs = songs
-                }
-                
-                self.fetchLikedSongs(userId: id) { likes in
-                    user.likes = likes
-                    self.users.append(user)
+                    
+                    self.fetchLikedSongs(userId: id) { likes in
+                        user.likes = likes
+                        self.users.append(user)
+                    }
                     group.leave()
                 }
             }
@@ -55,7 +55,7 @@ class HomeViewModel: ObservableObject {
                 let id = songDocument.documentID
                 if let name = data["name"] as? String {
                     let song = data["song"] as? String  ?? ""
-                    print("Şarkı ismi: \(name) 1905 \(song)")
+                    //print("Şarkı ismi: \(name) 1905 \(song)")
 
                     return Song(id: id, name: name, song: song)
 
@@ -80,7 +80,7 @@ class HomeViewModel: ObservableObject {
                 let id = songDocument.documentID
                 if let name = data["name"] as? String {
                     let song = data["song"] as? String  ?? ""
-                    print("Beğenilen Şarkı ismi: \(name) 1905 \(song)")
+                    //print("Beğenilen Şarkı ismi: \(name) 1905 \(song)")
 
                     return Song(id: id, name: name, song: song)
                 }
