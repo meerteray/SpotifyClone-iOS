@@ -27,6 +27,10 @@ class HomeViewModel: ObservableObject {
                 group.enter()
                 self.fetchSongsForUser(userId: id) { songs in
                     user.songs = songs
+                }
+                
+                self.fetchLikedSongs(userId: id) { likes in
+                    user.likes = likes
                     self.users.append(user)
                     group.leave()
                 }
@@ -63,6 +67,30 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    private func fetchLikedSongs(userId: String, completion: @escaping ([Song]) -> Void) {
+        self.db.collection("users").document("000").collection("likedSongs").getDocuments { (songSnapshot, error) in
+            if let error = error {
+                print("Beğenilen şarkılar çekilirken hata oluştu: \(error)")
+                completion([])
+                return
+            }
+            
+            let likedSongs = songSnapshot?.documents.compactMap { songDocument -> Song? in
+                let data = songDocument.data()
+                let id = songDocument.documentID
+                if let name = data["name"] as? String {
+                    let song = data["song"] as? String  ?? ""
+                    print("Beğenilen Şarkı ismi: \(name) 1905 \(song)")
+
+                    return Song(id: id, name: name, song: song)
+                }
+                return nil
+            } ?? []
+            
+            completion(likedSongs)
+        }
+    }
+  
     func selectUser(_ user: User) {
         self.selectedUser = user
     }

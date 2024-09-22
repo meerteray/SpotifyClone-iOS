@@ -7,6 +7,7 @@ struct User: Identifiable {
     var name: String
     var imageURL: String
     var songs: [Song] = []
+    var likes: [Song] = []
 }
 
 struct Song: Identifiable {
