@@ -60,10 +60,20 @@ struct FullScreenPlayerView: View {
                 
                 Spacer()
                 
-                ProgressBar(value: $viewModel.playbackProgress)
-                    .frame(height: 4)
-                    .padding(.horizontal)
-                
+                VStack(alignment: .trailing) {
+                                   Button(action: {
+ // *
+                                   }) {
+                                       Image(systemName: "heart")
+                                           .foregroundColor(.white)
+                                           .font(.title2)
+                                   }
+                                   .padding(.bottom, 8)
+                                   
+                                   ProgressBar(value: $viewModel.playbackProgress)
+                                       .frame(height: 4)
+                               }
+                               .padding(.horizontal)
                 HStack {
                     Text(formatTime(viewModel.playbackProgress * 30))
                         .font(.caption)
