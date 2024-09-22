@@ -110,10 +110,10 @@ class PlaylistViewModel: ObservableObject {
         isPlaying = false
         timer?.invalidate()
     }
-    //
+    
     func addToLikedSongs(song: Song) {
         let userId = selectedUser.id
-        let songRef = db.collection("users").document(userId).collection("likedSongs").document(song.id)
+        let songRef = db.collection("users").document("000").collection("likedSongs").document(song.id)
         
         songRef.getDocument { (document, error) in
             if let document = document, document.exists {
